@@ -1,0 +1,73 @@
+xammp
+nodejs
+composer
+laravel
+jstream
+
+------- composer require laravel/jetstream
+------- php artisan jetstream:install livewire
+------- npm install
+------- npm run build
+------- php artisan migrate
+
+
+
+*** ARCHIVO WEB
+Web-> rutas de la web
+
+*** VISTAS
+Carpeta de vistas -> tiene el html y la logica
+vita1.blade.php
+
+*** ROUTES
+En routes invocas las vistas
+
+*** CONTROLADORES
+Controladores, archivo php 	
+----------- php artisan make:controller NombreControlador (inicial mayuscula en el nombre) --resource //crea el archivo con los cruds
+
+	public function index(){
+		return view('vista1');
+	}
+	public function index(Request $peticion){
+		$arreglo = []		
+
+	}
+
+en routes se puede llamar a los controladores
+
+*** MIGRACIONES
+
+------------ php artisan migrate create_personas_table   (nombre de la tabla en plural y al final agregar table)
+
+en up especificar los campos que tendra schema
+	Schema::create('clientes', function (Blueprint $table )
+	{
+		$table->id();
+		$table->timestamp();
+	});
+
+----------- php artisan migrate
+
+*** MODELOS (ORM --- ELOCUENT)
+----------- php artisan make:model Persona (nombre en mayuscula en singular)
+Se ubica en la carpeta Models
+
+
+
+*** CONTROLLER
+----------- php artisan make:controller PersonaController (mayuscula) --resource
+se ubica en carpeta Controllers
+
+
+use App\Models\Persona
+
+	public function index(){
+		Persona::all();
+		echo $datos; 	
+	}
+	
+
+
+*** ROUTES
+Route::resource('/', 'App\Controllers\PersonaController')
