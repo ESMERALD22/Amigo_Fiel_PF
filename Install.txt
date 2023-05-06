@@ -38,7 +38,7 @@ en routes se puede llamar a los controladores
 
 *** MIGRACIONES
 
------------- php artisan migrate create_personas_table   (nombre de la tabla en plural y al final agregar table)
+------------ php artisan make:migration create_personas_table   (nombre de la tabla en plural y al final agregar table)
 
 en up especificar los campos que tendra schema
 	Schema::create('clientes', function (Blueprint $table )
@@ -71,3 +71,17 @@ use App\Models\Persona
 
 *** ROUTES
 Route::resource('/', 'App\Controllers\PersonaController')
+
+
+
+        Schema::create('inscripcion', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('idAtleta');
+            $table->decimal('peso');
+            $table->decimal('altura');
+            $table->unsignedInteger('idEncargado');
+            $table->string('fotografia');
+            $table->date('fechaInscripcion');
+            $table->timestamps();
+        });
+

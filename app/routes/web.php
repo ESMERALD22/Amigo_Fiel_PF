@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\TipoAnimalController;
+
+use App\Models\TipoAnimal;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +30,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::resource('animales', AnimalController::class);
+Route::resource('tipoAnimales', TipoAnimalController::class);
