@@ -30,5 +30,14 @@ class Animal extends Model
     {
         return $this->hasOne('App\Models\TipoAnimal', 'id', 'idTipoAnimal');
     }
+    public function IngresoAnimal()
+    {
+        return $this->hasMany('App\Models\IngresoAnimal', 'idAnimal', 'id');
+    }
+    public function Hogares()
+    {
+        return $this->hasMany('App\Models\IngresoAnimal', 'idHogar', 'id');
+    }
+    
 
 }
