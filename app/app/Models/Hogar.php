@@ -23,9 +23,8 @@ class Hogar extends Model
     protected $perPage = 20;
     protected $fillable = ['nombreEncargado','telefono1','telefono2','direccion','descripcionLugar','animalesPropios','tiempoDisponible'];
 
-    //un adoptante esta en muchos contratos
-    public function IngresoAnimal()
-    {
-        return $this->hasMany('App\Models\IngresoAnimal', 'idHogar', 'id');
+    //relacion de ono a muchos de ingreso animales y hogares
+    public function IngresoAnimales(){
+        return $this->hasMany('App\Models\IngresoAnimal','idHogar','id');
     }
 }

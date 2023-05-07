@@ -23,10 +23,9 @@ class Adoptante extends Model
     protected $perPage = 20;
     protected $fillable = ['nombre','apellido','dpi','telefono1','telefono2','correo','direccion','detallles'];
 
-    //un adoptante esta en muchos contratos
-    public function Contrato()
-    {
-        return $this->hasMany('App\Models\Contrato', 'idAdoptante', 'id');
+    //Relacion de uno a muchos entre contrato y adoptante 
+    public function contratos(){
+        return $this->hasMany('App\Models\Contrato','idAdoptante','id');
     }
     
 

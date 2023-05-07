@@ -23,11 +23,19 @@ class Contrato extends Model
     protected $perPage = 20;
     protected $fillable = ['idContrato','fechaSalida','idAnimal','idAdoptante','idSocio','estado','observacion'];
 
-    //un adoptante esta en muchos contratos
-    public function Adoptante()
-    {
-        return $this->hasOne('App\Models\Adoptante', 'id', 'idAdoptante');
+    //relacion uno a uno de contrato con animal(inverso)
+    public function Animal(){
+        return $this->belongsTo('App\Models\Animal','idAnimal','id');
     }
 
+    //Relacion de uno a muchos entre Contratos y adoptante(inversa) 
+    public function Adoptante(){
+        return $this->belongsTo('App\Models\Adoptante','idAdoptante','id');
+    }
+
+    //Relacion de uno a muchos entre Contratos y socios(inversa) 
+    public function Socio(){
+        return $this->belongsTo('App\Models\Socio','idSocio','id');
+    }
     
 }

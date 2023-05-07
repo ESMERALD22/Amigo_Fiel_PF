@@ -21,13 +21,14 @@ class IngresoAnimal extends Model
     protected $perPage = 20;
     protected $fillable = ['fechaIngreso','idAnimal','idHogar','procedencia','detalle'];
 
-    //un adoptante esta en muchos contratos
-    public function Animal()
-    {
-        return $this->hasOne('App\Models\Animal', 'id', 'idAnimal');
+    //relacion uno a uno de ingreso animal con animal(inverso)
+    public function Animal(){
+        return $this->belongsTo('App\Models\Animal','idAnimal','id');
     }
-    public function Hogar()
-    {
-        return $this->hasOne('App\Models\Hogar', 'id', 'idHogar');
+
+    //relacion de uno a muchos de ingreso aniamles y hogares (inversa)
+    public function Hogar(){
+        return $this->belongsTo('App\Models\Hogar','idHogar','id');
     }
+    
 }

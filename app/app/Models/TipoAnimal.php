@@ -16,13 +16,9 @@ class TipoAnimal extends Model
     protected $perPage = 20;
     protected $fillable = ['tipo'];
 
-    //un adoptante esta en muchos contratos
-    public function animales()
-    {
-        return $this->hasMany('App\Models\Animal', 'idAnimal', 'id');
+    //Relacion de uno a mucho entre tipo animal y animales
+    public function Animales(){
+        return $this->hasMany('App\Models\Animal','idTipoAnimal','id');
     }
     
-
-
-
 }
