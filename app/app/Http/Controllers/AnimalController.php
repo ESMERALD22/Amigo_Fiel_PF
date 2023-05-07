@@ -16,7 +16,7 @@ class AnimalController extends Controller
         $tiposAnimales = TipoAnimal::all();
 
         $animales = Animal::all();
-        return view("animales.index",compact('animales', 'tiposAnimales')); //devuelve form y carga tipos de animaes existentes
+        return view("animales.index", compact('animales', 'tiposAnimales')); //devuelve form y carga tipos de animaes existentes
 
     }
 
@@ -28,7 +28,7 @@ class AnimalController extends Controller
         //hembra o macho
         $tiposAnimales = TipoAnimal::all();
 
-        return view("animales.create",compact('tiposAnimales')); //devuelve form y carga tipos de animaes existentes
+        return view("animales.create", compact('tiposAnimales')); //devuelve form y carga tipos de animaes existentes
 
     }
 
@@ -38,13 +38,24 @@ class AnimalController extends Controller
 
     public function store(Request $request)
     {
+
         request()->validate(Animal::$rules);
+        //creamos el animal$animal
+        $animal = new Animal;
+        $animal = Animal::create($request->all());
 
-        $animal =Animal::create($request->all());
-
+        if ($request->hasfile('foto')); 
+        {
+            $file = $request->file('foto');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/animales/', $filename);
+            $animal->foto = $filename;
+            $animal->save();
+        }
         return redirect()->route('animales.index')->with('success', 'Departamento created successfully.');
-
-    }
+ 
+}
 
     /**
      * Display the specified resource.
@@ -52,18 +63,18 @@ class AnimalController extends Controller
     public function show($id)
     {
         $animal = Animal::find($id);
-         return $animal;
+        return $animal;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $animal = Animal::find($id);
         $tiposAnimales = TipoAnimal::all();
 
-        return view("animales.edit",compact('tiposAnimales', 'animal')); //devuelve form y carga tipos de animaes existentes
+        return view("animales.edit", compact('tiposAnimales', 'animal')); //devuelve form y carga tipos de animaes existentes
 
     }
 
@@ -73,29 +84,25 @@ class AnimalController extends Controller
     public function update(Request $request,  $id)
     {
         $animal = Animal::find($id);
-        print("RECIBIENDO");
-        print( $animal->id);
-        if($animal->id == null){
+        if ($animal->id == null) {
             print("No hay nada");
-        }
-        else{
+        } else {
             print("Si hay");
-
         }
 
         request()->validate(Animal::$rules);
         $animal->update($request->all());
 
-        return redirect()->route('animales.index')->with('success', 'Animal actualizado');        
+        return redirect()->route('animales.index')->with('success', 'Animal actualizado');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
-        $animal=Animal::find($id);
+        $animal = Animal::find($id);
         $animal->delete();
-        return redirect()->route('animales.index')->with('success', 'Animal elimindado');        
+        return redirect()->route('animales.index')->with('success', 'Animal elimindado');
     }
 }

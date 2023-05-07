@@ -36,7 +36,7 @@
             <td>{{$animal->fechaNacimiento}}</td>
             <td>{{$animal->edad}}</td>
             <td>{{$animal->descripcion}}</td>
-            <td> <img src="{{ asset('uploads/animales/'.$animal->foto) }}" width="100px" height="100px" alt="Image"> </td>
+            <td> <img src="{{ asset('uploads/animales/'.$animal->foto) }}" width="200px" height="200px" alt="Image"> </td>
 
             <td>
                 <form action="{{ route('animales.destroy',$animal->id) }} " method="POST">

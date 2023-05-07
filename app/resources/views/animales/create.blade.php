@@ -3,7 +3,7 @@
 @section('content')
 <h1>VISTA CREATE ANIMALES</h1>
 
-<form action="/animales" method="POST">
+<form action="{{ route('animales.store')}}" method="POST" enctype="multipart/form-data" >
     @csrf
 
     <div class="mb-3">
@@ -51,7 +51,7 @@
 
     <div class="mb-3">
         <label for="" class="form-label">Edad </label>
-        <input id="edad" name="edad" type="text" class="form-control" tabindex="3">
+        <input id="edad" name="edad" type="number" class="form-control" tabindex="3">
     </div>
 
     <div class="mb-3">
@@ -59,13 +59,16 @@
         <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3">
     </div>
 
-    <div class="mb-3">
-        <label for="" class="form-label">Foto</label>
-        <label for="" class="form-label">Seleccione una imagen</label>
-        <input id="foto" name="foto" type="file" class="hidden" tabindex="3">
+    <div class="grid grid-cols-1 mt-5 mx-7">
+        <img id="imagenSeleccionada" style="max-block-size: 300px;">
     </div>
-            
-    
+
+    <div class="form-group">
+        <label for="" class="form-label">Foto</label>
+        <input type="file" id="foto" name="foto"  class="hidden"/>
+    </div>
+
+
 
     <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>
     <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
@@ -75,3 +78,16 @@
 </form>
 
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function(e) {
+        $('#foto').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#imagenSeleccionada').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>
