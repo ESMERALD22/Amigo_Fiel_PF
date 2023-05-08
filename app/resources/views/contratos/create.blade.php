@@ -1,80 +1,80 @@
 @extends('layouts.plantillabase')
 
 @section('content')
-<h1>VISTA CREATE CONTRATO</h1>
+<h1>CREACIÓN DEL CONTRATO</h1>
 
 <form action="{{ route('contratos.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="mb-3">
-        <h3> FECHA </h3>
+        <h3> Fecha : </h3>
         <input id="fechaSalida" name="fechaSalida" type="date" class="form-control" tabindex="3">
     </div>
 
     <div>
-        <h3> LUGAR </h3>
+        <h3> Lugar : </h3>
         <input id="lugar" name="lugar" type="text" class="form-control" tabindex="3">
     </div>
 
     <div>
-        <h3> DATOS DEL ADOPTANTE </h3>
+        <h3> Datos del adoptante </h3>
     </div>
     <div>
-        <label for="" class="form-label"> NOMBRE: {{ $adoptante->nombre }} </label>
+        <label for="" class="form-label"> Nombre : {{ $adoptante->nombre }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> DPI: {{ $adoptante->dpi }} </label>
+        <label for="" class="form-label"> DPI : {{ $adoptante->dpi }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> TELEFONO 1: {{ $adoptante->telefono1 }} </label>
+        <label for="" class="form-label"> Teléfono 1 : {{ $adoptante->telefono1 }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> TELEFONO 2: {{ $adoptante->telefono2 }} </label>
+        <label for="" class="form-label"> Teléfono 2 : {{ $adoptante->telefono2 }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> CORREO ELECTRONICO: {{ $adoptante->correo }} </label>
+        <label for="" class="form-label"> Correo electrónico : {{ $adoptante->correo }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> DOMICILIO: {{ $adoptante->direccion }} </label>
-    </div>
-
-    <div>
-        <h3> DATOS DEL REPRESENTANTE DE LA ASOCIACION </h3>
-    </div>
-    <div>
-        <label for="" class="form-label"> NOMBRE: {{ $socio->nombre }} </label>
-    </div>
-    <div>
-        <label for="" class="form-label"> APELLIDO: {{ $socio->apellido }} </label>
+        <label for="" class="form-label"> Domicilio : {{ $adoptante->direccion }} </label>
     </div>
 
     <div>
-        <h3> DATOS DE LA MASCOTA </h3>
+        <h3> Datos del representante de la asoción </h3>
     </div>
     <div>
-        <label for="" class="form-label"> NOMBRE: {{ $animal->nombre }} </label>
+        <label for="" class="form-label"> Nombres : {{ $socio->nombre }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> ESPECIE: {{ $animal->TipoAnimal->tipo  }} </label>
+        <label for="" class="form-label"> Apellidos : {{ $socio->apellido }} </label>
+    </div>
+
+    <div>
+        <h3> Datos de la mascota </h3>
     </div>
     <div>
-        <label for="" class="form-label"> SEXO: {{ $animal->sexo }} </label>
+        <label for="" class="form-label"> Nombre : {{ $animal->nombre }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> TIPO: {{ $animal->raza }} </label>
+        <label for="" class="form-label"> Especie : {{ $animal->TipoAnimal->tipo  }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> NOMBRE RAZA: {{ $animal->nombreRaza }} </label>
+        <label for="" class="form-label"> Sexo : {{ $animal->sexo }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> FECHA DE NACIMIENTO: {{ $animal->fechaNacimiento }} </label>
+        <label for="" class="form-label"> Raza : {{ $animal->raza }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> PROCEDENCIA: {{ $animal->procedencia }} </label>
+        <label for="" class="form-label"> Nombre de la Raza: {{ $animal->nombreRaza }} </label>
+    </div>
+    <div>
+        <label for="" class="form-label"> Fecha de nacimiento: {{ $animal->fechaNacimiento }} </label>
+    </div>
+    <div>
+        <label for="" class="form-label"> Procedencia : {{ $animal->procedencia }} </label>
     </div>
 
     <div >
-        <label for="" class="form-label"> OBSERVACIONES: </label>
+        <label for="" class="form-label"> Observaciones : </label>
         <input id="observacion" name="observacion" type="text" class="form-control" tabindex="3">
     </div>
 

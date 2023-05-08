@@ -1,7 +1,7 @@
 @extends('layouts.plantillabase')
 
 @section('content')
-<h1>VISTA INDEX CONTRATO</h1>
+<h1>INFORMACIÓN DEL ADOPTANTE</h1>
 
 <form action="{{ route('contratos.create') }}" method="GET" enctype="multipart/form-data">
     @csrf

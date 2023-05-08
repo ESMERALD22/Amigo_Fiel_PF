@@ -1,14 +1,14 @@
 @extends('layouts.plantillabase')
 
 @section('content')
-<h1>VISTA EDIT ANIMALES</h1>
+<h1>EDICIÓN DE INFORMACIÓN DE ANIMAL</h1>
 
 <form action="{{ route('animales.update', $animal->id) }}"  method="POST" enctype="multipart/form-data" >
 @method('PUT')
     @csrf
 
     <div class="mb-3">
-        <label for="" class="form-label">SEXO*</label>
+        <label for="" class="form-label">Sexo :</label>
         <select name="sexo">
             @if($animal->sexo == 'Hembra')
             <option value="Hembra" selected>Hembra</option>
@@ -18,10 +18,8 @@
         </select>
     </div>
 
-
-
     <div class="mb-3">
-        <label for="" class="form-label">TIPO*</label>
+        <label for="" class="form-label">Especie :</label>
         <select name="idTipoAnimal">
             @foreach ($tiposAnimales as $tipo1){
             @if($animal->idTipoAnimal == $tipo1->id)
@@ -36,7 +34,7 @@
 
 
     <div class="mb-3">
-        <label for="" class="form-label">Raza*</label>
+        <label for="" class="form-label">Raza :</label>
         <select name="raza">
             @if($animal->raza == 'Raza')
             <option value="Raza" selected>Raza</option>
@@ -49,27 +47,27 @@
 
 
     <div class="mb-3">
-        <label for="" class="form-label">Nombre Raza</label>
+        <label for="" class="form-label">Nombre de la raza :</label>
         <input id="nombreRaza" name="nombreRaza" type="text" class="form-control" tabindex="3" value="{{$animal->nombreRaza}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">NOMBRE</label>
+        <label for="" class="form-label">Nombre del animal :</label>
         <input id="nombre" name="nombre" type="text" class="form-control" tabindex="3" value="{{$animal->nombre}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Fecha Nacimiento</label>
+        <label for="" class="form-label">Fecha de nacimiento :</label>
         <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" tabindex="3" value="{{$animal->fechaNacimiento}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Edad </label>
+        <label for="" class="form-label">Edad :</label>
         <input id="edad" name="edad" type="text" class="form-control" tabindex="3" value="{{$animal->edad}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Descripcion</label>
+        <label for="" class="form-label">Descripción :</label>
         <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3" value="{{$animal->descripcion}}">
     </div>
 
@@ -79,7 +77,7 @@
     </div>
 
     <div class="form-group">
-        <label for="" class="form-label">Foto</label>
+        <label for="" class="form-label">Fotografía :</label>
         <input type="file" id="foto" name="foto"   class="hidden"/>
     </div>
 

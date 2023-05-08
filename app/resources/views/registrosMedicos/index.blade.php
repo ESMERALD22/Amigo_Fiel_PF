@@ -2,8 +2,8 @@
 
 @section('content')
 
-<h1>VISTA INDEX ADOPTANTE</h1>
-<a href="{{ route('animales.index') }}" class="btn btn-primary">CREAR</a>
+<h1>REGISTROS MÉDICOS</h1>
+<a href="{{ route('animales.index') }}" class="btn btn-primary">Ingresar registro médico</a>
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>
@@ -11,7 +11,7 @@
             <th scope="col">Fecha</th>
             <th scope="col">Animal</th>
             <th scope="col">Tratamiento</th>
-            <th scope="col">Descripcion</th>
+            <th scope="col">Descripción</th>
         </tr>
     </thead>
     <tbody>

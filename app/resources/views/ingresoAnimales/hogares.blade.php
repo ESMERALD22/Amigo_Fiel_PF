@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>VISTA INDEX HOGARES PARA INGRESO DE ANIMALES</h1>
+<h1>HOGARES TEMPORALES</h1>
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>
@@ -10,7 +10,7 @@
             <th scope="col">Encargado</th>
             <th scope="col">Telefono 1</th>
             <th scope="col">Telefono 2</th>
-            <th scope="col">Direccion</th>
+            <th scope="col">Dirección</th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
                     <input type="hidden" id="hogar" name="hogar" type="text" value="{{$hogar->id}}">
                     <input type="hidden" id="animal" name="animal" type="text" value="{{$id}}">
 
-                    <button type="submit" class="btn btn-danger">Seleccionar</button>
+                    <button type="submit" class="btn btn-success">Seleccionar</button>
                 </form>
 
                 @csrf

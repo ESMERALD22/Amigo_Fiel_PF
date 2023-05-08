@@ -1,18 +1,18 @@
 @extends('layouts.plantillabase')
 
 @section('content')
-<h1>VISTA CREATE salidaAnimales</h1>
+<h1>REGISTRO DE SALIDA DE ANIMAL</h1>
 
 <form action="{{ route('salidaAnimales.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="mb-3">
-        <label for="" class="form-label">Fecha Salida</label>
+        <label for="" class="form-label">Fecha de salida :</label>
         <input id="fechaSalida" name="fechaSalida" type="date" class="form-control" tabindex="3">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Tipo salida *</label>
+        <label for="" class="form-label">Tipo de salida :</label>
         <select name="tipoSalida">
             <option value="Adopción">Adopción</option>
             <option value="Retorno a su hogar">Retorno a su hogar</option>
@@ -21,33 +21,33 @@
         </select>
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Detalles</label>
+        <label for="" class="form-label">Detalles :</label>
         <input id="detalle" name="detalle" type="text" class="form-control" tabindex="3">
     </div>
 
     <div>
-        <h3> DATOS DE LA MASCOTA </h3>
+        <h3> Datos de la mascota </h3>
     </div>
     <div>
-        <label for="" class="form-label"> NOMBRE: {{ $animal->nombre }} </label>
+        <label for="" class="form-label"> Nombre : {{ $animal->nombre }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> ESPECIE: {{ $animal->TipoAnimal->tipo  }} </label>
+        <label for="" class="form-label"> Especie: {{ $animal->TipoAnimal->tipo  }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> SEXO: {{ $animal->sexo }} </label>
+        <label for="" class="form-label"> Sexo: {{ $animal->sexo }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> TIPO: {{ $animal->raza }} </label>
+        <label for="" class="form-label"> Raza: {{ $animal->raza }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> NOMBRE RAZA: {{ $animal->nombreRaza }} </label>
+        <label for="" class="form-label"> Nombre de la raza: {{ $animal->nombreRaza }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> FECHA DE NACIMIENTO: {{ $animal->fechaNacimiento }} </label>
+        <label for="" class="form-label"> Fecha de nacimiento: {{ $animal->fechaNacimiento }} </label>
     </div>
     <div>
-        <label for="" class="form-label"> PROCEDENCIA: {{ $animal->procedencia }} </label>
+        <label for="" class="form-label"> Procedencia: {{ $animal->procedencia }} </label>
     </div>
 
     <!-- Dejar estos input invisible solo se necesita para mandar ids -->

@@ -2,16 +2,16 @@
 
 @section('content')
 
-<h1>VISTA INDEX ADOPTANTE</h1>
-<a href="{{ route('hogares.create') }}" class="btn btn-primary">CREAR</a>
+<h1>HOGARES TEMPORALES</h1>
+<a href="{{ route('hogares.create') }}" class="btn btn-primary">Registrar hogar temporal</a>
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Encargado</th>
-            <th scope="col">Telefono 1</th>
-            <th scope="col">Telefono 2</th>
-            <th scope="col">Direccion</th>
+            <th scope="col">Teléfono 1</th>
+            <th scope="col">Teléfono 2</th>
+            <th scope="col">Direccién</th>
         </tr>
     </thead>
     <tbody>

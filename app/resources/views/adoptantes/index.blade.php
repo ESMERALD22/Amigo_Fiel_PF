@@ -2,8 +2,8 @@
 
 @section('content')
 
-<h1>VISTA INDEX ADOPTANTE</h1>
-<a href="{{ route('adoptantes.create') }}" class="btn btn-primary">CREAR</a>
+<h1>ADOPTANTES</h1>
+<a href="{{ route('adoptantes.create') }}" class="btn btn-primary">Ingresar adoptante</a>
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>
@@ -11,10 +11,10 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">DPI</th>
-            <th scope="col">Telefono 1</th>
-            <th scope="col">Telefono 2</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Direccion</th>
+            <th scope="col">Teléfono 1</th>
+            <th scope="col">Teléfono 2</th>
+            <th scope="col">Correo electrónico</th>
+            <th scope="col">Dirección</th>
             <th scope="col">Otros detalles</th>
         </tr>
     </thead>

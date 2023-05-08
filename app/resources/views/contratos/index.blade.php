@@ -2,14 +2,14 @@
 
 @section('content')
 
-<h1>VISTA INDEX CONTRATO</h1>
-<a href="{{ route('animales.index') }}" class="btn btn-primary">CREAR CONTRATO</a>
+<h1>CONTRATOS</h1>
+<a href="{{ route('animales.index') }}" class="btn btn-primary">Generar contrato</a>
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Número de contrato</th>
-            <th scope="col">Fecha Contrato</th>
+            <th scope="col">Fecha de contrato</th>
             <th scope="col">Lugar</th>
             <th scope="col">Mascota</th>
             <th scope="col">Adoptante</th>
@@ -31,8 +31,8 @@
             <td>{{$contrato->observacion}}</td>
             <td>{{$contrato->Socio->nombre}} {{$contrato->Socio->apellido}}</td>
             <td>
-                    <a href="{{ route('contratos.show',$contrato->id) }} " class="btn btn-submit">VER CONTRATO</a>
-                    <a href=" " class="btn btn-submit">Imprimir</a>
+                    <a href="{{ route('contratos.show',$contrato->id) }} " class="btn btn-info">VER CONTRATO</a>
+                    <a href=" " class="btn btn-success">Imprimir</a>
             </td>
         </tr>
         @endforeach

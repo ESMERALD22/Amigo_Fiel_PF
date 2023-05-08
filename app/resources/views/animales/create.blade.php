@@ -1,13 +1,13 @@
 @extends('layouts.plantillabase')
 
 @section('content')
-<h1>VISTA CREATE ANIMALES</h1>
+<h1>REGISTRO DE ANIMAL</h1>
 
 <form action="{{ route('animales.store')}}" method="POST" enctype="multipart/form-data" >
     @csrf
 
     <div class="mb-3">
-        <label for="" class="form-label">SEXO *</label>
+        <label for="" class="form-label">Sexo :</label>
         <select name="sexo">
             <option value="Hembra">Hembra</option>
             <option value="Macho">Macho</option>
@@ -17,7 +17,7 @@
 
 
     <div class="mb-3">
-        <label for="" class="form-label">TIPO*</label>
+        <label for="" class="form-label">Especie :</label>
         <select name="idTipoAnimal">
             @foreach ($tiposAnimales as $tipo1){
             <option value="{{$tipo1->id}}"> {{$tipo1->tipo}}</option>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">RAZA *</label>
+        <label for="" class="form-label">Raza :</label>
         <select name="raza">
             <option value="Raza"> Raza</option>
             <option value="Mestizo">Mestizo</option>
@@ -35,27 +35,27 @@
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Nombre Raza</label>
+        <label for="" class="form-label">Nombre de la raza :</label>
         <input id="nombreRaza" name="nombreRaza" type="text" class="form-control" tabindex="3">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">NOMBRE</label>
+        <label for="" class="form-label">Nombre del animal :</label>
         <input id="nombre" name="nombre" type="text" class="form-control" tabindex="3">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Fecha Nacimiento</label>
+        <label for="" class="form-label">Fecha de nacimiento:</label>
         <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" tabindex="3">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Edad </label>
+        <label for="" class="form-label">Edad :</label>
         <input id="edad" name="edad" type="number" class="form-control" tabindex="3">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Descripcion</label>
+        <label for="" class="form-label">Descripción :</label>
         <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3">
     </div>
 
@@ -64,7 +64,7 @@
     </div>
 
     <div class="form-group">
-        <label for="" class="form-label">Foto</label>
+        <label for="" class="form-label">Fotografía :</label>
         <input type="file" id="foto" name="foto"  class="hidden"/>
     </div>
     <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>

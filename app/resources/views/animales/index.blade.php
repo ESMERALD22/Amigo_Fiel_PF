@@ -2,21 +2,21 @@
 
 @section('content')
 
-<h1>VISTA INDEX ANIMALES</h1>
-<a href="{{ route('animales.create') }}" class="btn btn-primary">CREAR</a>
+<h1>ANIMALES</h1>
+<a href="{{ route('animales.create') }}" class="btn btn-primary">Ingresar animal</a>
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Sexo</th>
-            <th scope="col">Tipo Animal</th>
+            <th scope="col">Especie</th>
             <th scope="col">Raza</th>
             <th scope="col">Nombre Raza</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Fecha Nacimiento</th>
+            <th scope="col">Nombre del Animal</th>
+            <th scope="col">Fecha de nacimiento</th>
             <th scope="col">Edad</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Foto</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Fotografía</th>
         </tr>
     </thead>
     <tbody>
@@ -37,14 +37,9 @@
             <td> <img src="{{ asset('uploads/animales/'.$animal->foto) }}" width="200px" height="200px" alt="Image"> </td>
 
             <td>
-                <a href="vista/{{$animal->id}}" class="btn btn-info">Adoptar</a>
-            </td>
-
-            <td>
-                <a href="hogar/{{$animal->id}}" class="btn btn-info">Asignar Hogar</a>
-            </td>
-            <td>
-                <a href="{{ route('animales.edit',$animal->id) }} " class="btn btn-info">Editar</a>
+                <div><a href="vista/{{$animal->id}}" class="btn btn-primary">Adoptar</a></div>
+                <div><a href="hogar/{{$animal->id}}" class="btn btn-success">Asignar hogar temporal</a></div>
+                <div><a href="{{ route('animales.edit',$animal->id) }} " class="btn btn-info">Editar</a></div>
             </td>
 
             <td>
@@ -52,7 +47,7 @@
                     @csrf
                     <!-- Dejar este input invisible solo se necesita para mandar id -->
                     <input type="hidden" id="id" name="id" type="text" value="{{$animal->id}}">
-                    <button type="submit" class="btn btn-danger">Registrar Tratamientos Medicos</button>
+                    <button type="submit" class="btn btn-info">Registrar tratamientos médicos</button>
                 </form>
             </td>
 
@@ -62,7 +57,7 @@
                     @csrf
                     <!-- Dejar este input invisible solo se necesita para mandar id -->
                     <input type="hidden" id="id" name="id" type="text" value="{{$animal->id}}">
-                    <button type="submit" class="btn btn-danger">Salida</button>
+                    <button type="submit" class="btn btn-info">Salida</button>
                 </form>
             </td>
 

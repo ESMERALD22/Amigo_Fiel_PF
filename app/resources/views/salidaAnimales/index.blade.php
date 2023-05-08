@@ -2,8 +2,8 @@
 
 @section('content')
 
-<h1>VISTA INDEX SALIDA ANIMALES</h1>
-<a href="{{ route('animales.index') }}" class="btn btn-primary">CREAR</a>
+<h1>REGISTROS DE SALIDAS DE ANIMALES </h1>
+<a href="{{ route('animales.index') }}" class="btn btn-primary">Registrar salida de animal </a>
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>

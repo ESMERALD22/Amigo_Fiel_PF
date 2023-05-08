@@ -2,15 +2,15 @@
 
 @section('content')
 
-<h1>VISTA INDEX ADOPTANTE</h1>
-<a href="{{ route('animales.index') }}" class="btn btn-primary">CREAR</a>
+<h1>REGISTRO DE INGRESOS DE ANIMALES EN HOGARES TEMPORALES</h1>
+<a href="{{ route('animales.index') }}" class="btn btn-primary">Ingresar animal en hogar temporal</a>
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Fecha Ingreso</th>
+            <th scope="col">Fecha de ingreso</th>
             <th scope="col">Animal</th>
-            <th scope="col">Hogar Temporal </th>
+            <th scope="col">Hogar temporal </th>
             <th scope="col">Procedencia</th>
             <th scope="col">Detalles</th>
         </tr>

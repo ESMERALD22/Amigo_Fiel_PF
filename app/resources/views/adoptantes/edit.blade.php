@@ -1,47 +1,47 @@
 @extends('layouts.plantillabase')
 
 @section('content')
-<h1>VISTA EDIT Adoptante</h1>
+<h1>EDICIÓN DE INFORMACIÓN DEL ADOPTANTE</h1>
 
 <form action="{{ route('adoptantes.update', $adoptante->id) }}"  method="POST" enctype="multipart/form-data" >
 @method('PUT')
     @csrf
 
     <div class="mb-3">
-        <label for="" class="form-label">Nombre </label>
+        <label for="" class="form-label">Nombre :</label>
         <input id="nombre" name="nombre" type="text" class="form-control" tabindex="3" value="{{$adoptante->nombre}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Apellido</label>
+        <label for="" class="form-label">Apellido :</label>
         <input id="apellido" name="apellido" type="text" class="form-control" tabindex="3" value="{{$adoptante->apellido}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">DPI</label>
+        <label for="" class="form-label">DPI :</label>
         <input id="dpi" name="dpi" type="text" class="form-control" tabindex="3" value="{{$adoptante->dpi}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Telefono 1</label>
+        <label for="" class="form-label">Teléfono 1 :</label>
         <input id="telefono1" name="telefono1" type="text" class="form-control" tabindex="3" value="{{$adoptante->telefono1}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Telefono 2</label>
+        <label for="" class="form-label">Teléfono 2 :</label>
         <input id="telefono2" name="telefono2" type="text" class="form-control" tabindex="3" value="{{$adoptante->tlefno2}}">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Correo</label>
+        <label for="" class="form-label">Correo electrónico :</label>
         <input id="correo" name="correo" type="text" class="form-control" tabindex="3" value="{{$adoptante->correo}}">
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Direccion</label>
+        <label for="" class="form-label">Dirección :</label>
         <input id="direccion" name="direccion" type="text" class="form-control" tabindex="3" value="{{$adoptante->direccion}}">
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Otros detalles</label>
+        <label for="" class="form-label">Otros detalles :</label>
         <input id="detalles" name="detalles" type="text" class="form-control" tabindex="3" value="{{$adoptante->detalles}}">
     </div>
 
