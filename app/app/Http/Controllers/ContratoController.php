@@ -13,6 +13,10 @@ use App\Http\Requests\UpdateContratoRequest;
 
 class ContratoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      */

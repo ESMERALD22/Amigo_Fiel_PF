@@ -11,6 +11,10 @@ use App\Models\Hogar;
 
 class IngresoAnimalController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      */

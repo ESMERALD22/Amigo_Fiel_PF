@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class VistaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function ver($id)
     {
         return view("contratos.adoptanteC", compact('id'));
