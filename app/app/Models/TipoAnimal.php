@@ -20,5 +20,7 @@ class TipoAnimal extends Model
     public function Animales(){
         return $this->hasMany('App\Models\Animal','idTipoAnimal','id');
     }
-    
+
+//----------------------------------------------------------------------
+
 }

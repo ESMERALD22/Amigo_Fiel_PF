@@ -3,6 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\TipoAnimalController;
+use App\Http\Controllers\HogarController;
+use App\Http\Controllers\IngresoAnimalController;
+use App\Http\Controllers\RegistroMedicoController;
+use App\Http\Controllers\SalidaAnimalController;
+use App\Http\Controllers\AdoptanteController;
+use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\VistaController;
+
+
+
 
 use App\Models\TipoAnimal;
 
@@ -34,3 +44,15 @@ Route::middleware([
 
 Route::resource('animales', AnimalController::class);
 Route::resource('tipoAnimales', TipoAnimalController::class);
+
+Route::resource('hogares', HogarController::class);
+Route::resource('ingresoAnimales', IngresoAnimalController::class);
+Route::resource('registrosMedicos', RegistroMedicoController::class);
+Route::resource('salidaAnimales', SalidaAnimalController::class);
+
+Route::resource('adoptantes', AdoptanteController::class);
+
+Route::resource('contratos', ContratoController::class);
+
+Route::get('vista/{id}', [VistaController::class, 'ver']);
+

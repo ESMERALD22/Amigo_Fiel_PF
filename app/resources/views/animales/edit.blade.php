@@ -3,8 +3,8 @@
 @section('content')
 <h1>VISTA EDIT ANIMALES</h1>
 
-<form action="{{ route('animales.update', $animal->id) }}"  method="POST">
-{{ method_field('PATCH') }}
+<form action="{{ route('animales.update', $animal->id) }}"  method="POST" enctype="multipart/form-data" >
+@method('PUT')
     @csrf
 
     <div class="mb-3">
@@ -73,10 +73,16 @@
         <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3" value="{{$animal->descripcion}}">
     </div>
 
-    <div class="mb-3">
-        <label for="" class="form-label">Foto</label>
-        <input id="foto" name="foto" type="text" class="form-control" tabindex="3" value="{{$animal->foto}}">
+
+    <div class="grid grid-cols-1 mt-5 mx-7">
+        <img id="imagenSeleccionada" src="{{asset('uploads/animales/'.$animal->foto) }}" width="200px">
     </div>
+
+    <div class="form-group">
+        <label for="" class="form-label">Foto</label>
+        <input type="file" id="foto" name="foto"   class="hidden"/>
+    </div>
+
 
 
     <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>
@@ -87,3 +93,18 @@
 </form>
 
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function(e) {
+        $('#foto').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#imagenSeleccionada').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        
+    });
+</script>

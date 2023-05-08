@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use App\Models\TipoAnimal;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\File;
 class AnimalController extends Controller
 {
     /**
@@ -25,6 +25,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
+        
         //hembra o macho
         $tiposAnimales = TipoAnimal::all();
 
@@ -84,17 +85,40 @@ class AnimalController extends Controller
     public function update(Request $request,  $id)
     {
         $animal = Animal::find($id);
-        if ($animal->id == null) {
-            print("No hay nada");
-        } else {
-            print("Si hay");
-        }
+        request()->validate([
+        'sexo' => 'required',
+		'idTipoAnimal' => 'required',
+		'raza' => 'required',
+		'nombreRaza' => 'required',
+		'nombre' => 'required',
+		'fechaNacimiento' => 'required',
+		'edad' => 'required',
+		'descripcion' => 'required'
+        ]);
 
-        request()->validate(Animal::$rules);
         $animal->update($request->all());
 
+        if ($request->hasfile('foto')){
+              
+            $destination = 'uploads/animales/' . $animal->foto;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $file = $request->file('foto');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/animales/', $filename);
+            $animal->foto = $filename;
+            $animal->save();
+        }
+
+
+/*      $animal = Animal::find($id);
+        request()->validate(Animal::$rules);
+        $animal->update($request->all());
+*/
         return redirect()->route('animales.index')->with('success', 'Animal actualizado');
-    }
+       }
 
     /**
      * Remove the specified resource from storage.

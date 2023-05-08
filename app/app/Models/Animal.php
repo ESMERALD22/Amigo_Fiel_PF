@@ -44,4 +44,12 @@ class Animal extends Model
     public function RegistroMedico(){
         return $this->hasMany('App\Models\RegistroMedico','idAnimal','id');
     }
+
+
+//--------------------------------------------------------------
+    //relacion uno a uno de ingreso animal con animal
+    public function Contrato1(){
+        return $this->hasMany('App\Models\Contrato','idAnimal','id');
+
+    }
 }

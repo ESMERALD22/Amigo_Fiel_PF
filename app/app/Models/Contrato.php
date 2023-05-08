@@ -21,7 +21,7 @@ class Contrato extends Model
 
 
     protected $perPage = 20;
-    protected $fillable = ['idContrato','fechaSalida','idAnimal','idAdoptante','idSocio','estado','observacion'];
+    protected $fillable = ['idContrato','fechaSalida','idAnimal','idAdoptante','idSocio','estado','observacion','lugar'];
 
     //relacion uno a uno de contrato con animal(inverso)
     public function Animal(){
@@ -38,4 +38,12 @@ class Contrato extends Model
         return $this->belongsTo('App\Models\Socio','idSocio','id');
     }
     
+
+    //----------------------------------------------------
+    public function Animal1(){
+        return $this->hasOne('App\Models\Animal','id','idAnimal');
+    }
+    public function Adoptante1(){
+        return $this->hasOne('App\Models\Adoptante','id','idAdoptante');
+    }
 }

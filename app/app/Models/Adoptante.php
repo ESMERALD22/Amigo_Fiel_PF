@@ -21,12 +21,14 @@ class Adoptante extends Model
 
 
     protected $perPage = 20;
-    protected $fillable = ['nombre','apellido','dpi','telefono1','telefono2','correo','direccion','detallles'];
+    protected $fillable = ['nombre','apellido','dpi','telefono1','telefono2','correo','direccion','detalles'];
 
     //Relacion de uno a muchos entre contrato y adoptante 
     public function contratos(){
         return $this->hasMany('App\Models\Contrato','idAdoptante','id');
     }
     
+//----------------------------------------
+
 
 }

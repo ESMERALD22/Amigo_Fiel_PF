@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Adoptante;
-use App\Http\Requests\StoreAdoptanteRequest;
+use App\Models\Adoptante;use Illuminate\Http\Request;
+
 use App\Http\Requests\UpdateAdoptanteRequest;
 
 class AdoptanteController extends Controller
@@ -13,7 +13,8 @@ class AdoptanteController extends Controller
      */
     public function index()
     {
-        //
+        $adoptantes = Adoptante::all();
+        return view("adoptantes.index", compact('adoptantes')); //devuelve form 
     }
 
     /**
@@ -21,15 +22,20 @@ class AdoptanteController extends Controller
      */
     public function create()
     {
-        //
+        return view("adoptantes.create"); //devuelve form  
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAdoptanteRequest $request)
+    public function store(Request $request)
     {
-        //
+
+        request()->validate(Adoptante::$rules);
+        $adoptante = Adoptante::create($request->all());
+
+        return redirect()->route('adoptantes.index')->with('success', 'Adoptante created successfully.');
+
     }
 
     /**
@@ -43,24 +49,35 @@ class AdoptanteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Adoptante $adoptante)
+    public function edit($id)
     {
-        //
+        $adoptante = Adoptante::find($id);
+        return view("adoptantes.edit", compact('adoptante')); //devuelve form 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAdoptanteRequest $request, Adoptante $adoptante)
+    public function update(Request $request, $id)
     {
-        //
+        $adoptante = Adoptante::find($id);
+        request()->validate(Adoptante::$rules);
+        $adoptante->update($request->all());
+
+        return redirect()->route('adoptantes.index')
+            ->with('success', 'Adoptante updated successfully');
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Adoptante $adoptante)
+    public function destroy($id)
     {
-        //
+        $adoptante = Adoptante::find($id)->delete();
+
+        return redirect()->route('adoptantes.index')
+            ->with('success', 'Departamento deleted successfully');
+
     }
 }

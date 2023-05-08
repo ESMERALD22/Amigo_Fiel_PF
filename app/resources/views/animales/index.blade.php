@@ -28,8 +28,6 @@
             <td>
                 {{ $animal->TipoAnimal->tipo }}
             </td>
-
-            <td>{{$animal->idTipoAnimal}}</td>
             <td>{{$animal->raza}}</td>
             <td>{{$animal->nombreRaza}}</td>
             <td>{{$animal->nombre}}</td>
@@ -46,6 +44,10 @@
                     <button type="submit" class="btn btn-danger">Borrar</button>
                 </form>
             </td>
+            <td>
+            <a href="vista/{{$animal->id}}" class="btn btn-info">Generar Contrato</a>
+            </td>
+
         </tr>
         @endforeach
     </tbody>

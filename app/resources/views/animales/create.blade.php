@@ -67,9 +67,6 @@
         <label for="" class="form-label">Foto</label>
         <input type="file" id="foto" name="foto"  class="hidden"/>
     </div>
-
-
-
     <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>
     <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
     </div>
