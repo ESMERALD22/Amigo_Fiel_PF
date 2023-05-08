@@ -55,4 +55,5 @@ Route::resource('adoptantes', AdoptanteController::class);
 Route::resource('contratos', ContratoController::class);
 
 Route::get('vista/{id}', [VistaController::class, 'ver']);
+Route::get('hogar/{id}', [VistaController::class, 'elegirHogar']);
 

@@ -30,5 +30,6 @@ class IngresoAnimal extends Model
     public function Hogar(){
         return $this->belongsTo('App\Models\Hogar','idHogar','id');
     }
+ 
     
 }

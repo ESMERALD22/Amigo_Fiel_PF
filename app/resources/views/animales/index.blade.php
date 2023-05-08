@@ -37,15 +37,20 @@
             <td> <img src="{{ asset('uploads/animales/'.$animal->foto) }}" width="200px" height="200px" alt="Image"> </td>
 
             <td>
+            <a href="vista/{{$animal->id}}" class="btn btn-info">Adoptar</a>
+            </td>
+
+            <td>
+            <a href="hogar/{{$animal->id}}" class="btn btn-info">Asignar Hogar</a>
+            </td>
+
+            <td>
                 <form action="{{ route('animales.destroy',$animal->id) }} " method="POST">
                     @csrf
                     @method('DELETE')
                     <a href="{{ route('animales.edit',$animal->id) }} " class="btn btn-info">Editar</a>
                     <button type="submit" class="btn btn-danger">Borrar</button>
                 </form>
-            </td>
-            <td>
-            <a href="vista/{{$animal->id}}" class="btn btn-info">Generar Contrato</a>
             </td>
 
         </tr>

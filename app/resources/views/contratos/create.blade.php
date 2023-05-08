@@ -52,7 +52,7 @@
         <h3> DATOS DE LA MASCOTA </h3>
     </div>
     <div>
-        <label for="" class="form-label"> APELLIDO: {{ $animal->nombre }} </label>
+        <label for="" class="form-label"> NOMBRE: {{ $animal->nombre }} </label>
     </div>
     <div>
         <label for="" class="form-label"> ESPECIE: {{ $animal->TipoAnimal->tipo  }} </label>
