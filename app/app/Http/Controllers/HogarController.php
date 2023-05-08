@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Hogar;
 use App\Http\Requests\StoreHogarRequest;
 use App\Http\Requests\UpdateHogarRequest;
+use Illuminate\Http\Request;
+
 
 class HogarController extends Controller
 {
@@ -13,7 +15,9 @@ class HogarController extends Controller
      */
     public function index()
     {
-        //
+        $hogares = Hogar::all();
+        return view("hogares.index", compact('hogares')); 
+
     }
 
     /**
@@ -21,15 +25,22 @@ class HogarController extends Controller
      */
     public function create()
     {
-        //
+        return view("hogares.create"); //devuelve form
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreHogarRequest $request)
+    public function store(Request $request)
     {
-        //
+        
+        request()->validate(Hogar::$rules);
+        //creamos el animal$animal
+        $animal = Hogar::create($request->all());
+
+        return redirect()->route('hogares.index')->with('success', 'Hogar created successfully.');
+
     }
 
     /**
@@ -43,24 +54,35 @@ class HogarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Hogar $hogar)
+    public function edit($id)
     {
-        //
+        $hogar = Hogar::find($id);
+        return view("hogares.edit", compact('hogar')); //devuelve form 
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateHogarRequest $request, Hogar $hogar)
+    public function update(Request $request,  $id)
     {
-        //
+        $hogar = Hogar::find($id);
+        request()->validate(Hogar::$rules);
+        $hogar->update($request->all());
+
+        return redirect()->route('hogares.index')
+            ->with('success', 'Adoptante updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Hogar $hogar)
+    public function destroy($id)
     {
-        //
+        $hogar = Hogar::find($id)->delete();
+
+        return redirect()->route('hogares.index')
+            ->with('success', 'Departamento deleted successfully');
+
     }
 }

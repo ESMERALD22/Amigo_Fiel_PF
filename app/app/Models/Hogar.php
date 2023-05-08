@@ -17,11 +17,12 @@ class Hogar extends Model
 		'descripcionLugar' => 'required',
 		'animalesPropios' => 'required',
 		'tiempoDisponible' => 'required',
+		'miembrosFam' => 'required',
     ];
 
 
     protected $perPage = 20;
-    protected $fillable = ['nombreEncargado','telefono1','telefono2','direccion','descripcionLugar','animalesPropios','tiempoDisponible'];
+    protected $fillable = ['nombreEncargado','telefono1','telefono2','direccion','descripcionLugar','animalesPropios','tiempoDisponible','miembrosFam'];
 
     //relacion de ono a muchos de ingreso animales y hogares
     public function IngresoAnimales(){
