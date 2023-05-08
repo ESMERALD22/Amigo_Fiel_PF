@@ -80,8 +80,13 @@ class IngresoAnimalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(IngresoAnimal $ingresoAnimal)
+    public function destroy( $id)
     {
-        //
+        
+        $registro = IngresoAnimal::find($id)->delete();
+
+        return redirect()->route('ingresoAnimales.index')
+            ->with('success', 'Departamento deleted successfully');
+   
     }
 }

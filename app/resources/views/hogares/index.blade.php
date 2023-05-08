@@ -11,7 +11,7 @@
             <th scope="col">Encargado</th>
             <th scope="col">Teléfono 1</th>
             <th scope="col">Teléfono 2</th>
-            <th scope="col">Direccién</th>
+            <th scope="col">Dirección</th>
         </tr>
     </thead>
     <tbody>
