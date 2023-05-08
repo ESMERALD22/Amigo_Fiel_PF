@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Amigo Fiel',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Asociación Amigo Fiel</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/logo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,11 +86,11 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/logo.jpg',
             'alt' => 'Auth Logo',
             'class' => '',
-            'width' => 50,
-            'height' => 50,
+            'width' => 300,
+            'height' => 300,
         ],
     ],
 
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/logo.jpg',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -311,77 +311,78 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => '  Configuración de la cuenta'],
+        ['header' => 'CONFIGURACIÓN DE LA CUENTA'],
         [
             'text' => 'Perfil',
             'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
+            'icon_color' => 'pink',
+
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Cambiar Contraseña',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+            'icon_color' => 'pink',
+
+        ],
+
+        ['header' => 'SOCIOS'],
+        [
+            'text' => 'Socios',
+            'url'  => '/socios',
+            'icon_color' => 'cyan',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        ['header' => 'MENÚ'],
+        [
+            'text' => 'Hogares Temporales',
+            'url'  => '/hogares',
+            'icon_color' => 'yellow',
+            'icon' => 'fas fa-fw fa-home',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Animales',
+            'icon_color' => 'yellow',
+            'icon'    => 'fas fa-fw fa-dog',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'    => 'Animales',
+                    'icon_color' => 'cyan',
+                    'icon'    => 'fas fa-fw fa-cat',
+                    'url'  => '/animales',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text'    => 'Ingresos de Animales',
+                    'icon_color' => 'cyan',
+                    'icon'    => 'fas fa-fw fa-download',
+                    'url'  => '/ingresoAnimales',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'    => 'Registros Médicos',
+                    'icon_color' => 'cyan',
+                    'icon'    => 'fas fa-fw fa-medkit',
+                    'url'  => '/registrosMedicos',
+                ],                [
+                    'text'    => 'Salidas de Animales',
+                    'icon_color' => 'cyan   ',
+                    'icon'    => 'fas fa-fw fa-upload',
+                    'url'  => '/salidaAnimales',
                 ],
+
+
             ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
+        ],        [
+            'text' => 'Adoptantes',
+            'url'  => '/adoptantes',
             'icon_color' => 'yellow',
-            'url'        => '#',
+            'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'Contratos',
+            'url'  => '/contratos',
+            'icon_color' => 'yellow',
+            'icon' => 'fas fa-fw fa-folder-open',
         ],
     ],
 
