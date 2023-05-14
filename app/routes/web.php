@@ -9,6 +9,7 @@ use App\Http\Controllers\RegistroMedicoController;
 use App\Http\Controllers\SalidaAnimalController;
 use App\Http\Controllers\AdoptanteController;
 use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VistaController;
 
 
@@ -57,3 +58,4 @@ Route::resource('contratos', ContratoController::class);
 Route::get('vista/{id}', [VistaController::class, 'ver']);
 Route::get('hogar/{id}', [VistaController::class, 'elegirHogar']);
 
+Route::resource('users', UserController::class);

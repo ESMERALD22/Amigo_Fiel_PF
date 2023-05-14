@@ -10,6 +10,10 @@ class AnimalController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('can:animales.index')->only('index');
+        $this->middleware('can:animales.create')->only('create','store');
+        $this->middleware('can:animales.update')->only('edit','update');
+        $this->middleware('can:animales.destroy')->only('destroy');
     }
     
     /**

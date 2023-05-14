@@ -306,84 +306,86 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Usuarios',
+            'url'  => '/users',
+            'icon_color' => 'cyan',
+            'icon' => 'fas fa-fw fa-users',
+            'can' => 'users.index'
         ],
-        ['header' => 'CONFIGURACIÓN DE LA CUENTA'],
+        ['header' => 'CUENTA DE USUARIO'],
         [
             'text' => 'Perfil',
             'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
             'icon_color' => 'pink',
-
-        ],
-        [
-            'text' => 'Cambiar Contraseña',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-            'icon_color' => 'pink',
-
         ],
 
-        ['header' => 'SOCIOS'],
-        [
-            'text' => 'Socios',
-            'url'  => '/socios',
-            'icon_color' => 'cyan',
-            'icon' => 'fas fa-fw fa-users',
-        ],
         ['header' => 'MENÚ'],
         [
             'text' => 'Hogares Temporales',
             'url'  => '/hogares',
             'icon_color' => 'yellow',
             'icon' => 'fas fa-fw fa-home',
+            'can' => 'hogares.index'
         ],
         [
             'text'    => 'Animales',
             'icon_color' => 'yellow',
-            'icon'    => 'fas fa-fw fa-dog',
+            'icon'    => 'fas fa-fw fa-paw',
             'submenu' => [
                 [
                     'text'    => 'Animales',
                     'icon_color' => 'cyan',
-                    'icon'    => 'fas fa-fw fa-cat',
+                    'icon'    => 'fas fa-fw fa-dog',
                     'url'  => '/animales',
+                    'can' => 'animales.index'
+
                 ],
                 [
                     'text'    => 'Ingresos de Animales',
                     'icon_color' => 'cyan',
                     'icon'    => 'fas fa-fw fa-download',
                     'url'  => '/ingresoAnimales',
+                    'can' => 'ingresoAnimales.index'
+
                 ],
                 [
                     'text'    => 'Registros Médicos',
                     'icon_color' => 'cyan',
                     'icon'    => 'fas fa-fw fa-medkit',
                     'url'  => '/registrosMedicos',
+                    'can' => 'registrosMedicos.index'
+
                 ],                [
                     'text'    => 'Salidas de Animales',
                     'icon_color' => 'cyan   ',
                     'icon'    => 'fas fa-fw fa-upload',
                     'url'  => '/salidaAnimales',
+                    'can' => 'salidaAnimales.index'
+
                 ],
 
 
             ],
+            'can' => 'animales.index'
         ],        [
             'text' => 'Adoptantes',
             'url'  => '/adoptantes',
             'icon_color' => 'yellow',
             'icon' => 'fas fa-fw fa-users',
+            'can' => 'adoptantes.index'
+
         ],
         [
             'text' => 'Contratos',
             'url'  => '/contratos',
             'icon_color' => 'yellow',
             'icon' => 'fas fa-fw fa-folder-open',
-        ],
+            'can' => 'contratos.index'
+
+        ],        
     ],
 
     /*

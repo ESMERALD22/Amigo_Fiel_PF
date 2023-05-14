@@ -13,6 +13,11 @@ class IngresoAnimalController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('can:ingresoAnimales.index')->only('index');
+        $this->middleware('can:ingresoAnimales.create')->only('create','store');
+        $this->middleware('can:ingresoAnimales.update')->only('edit','update');
+        $this->middleware('can:ingresoAnimales.destroy')->only('destroy');
+
     }
     
     /**

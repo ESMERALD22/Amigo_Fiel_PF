@@ -10,6 +10,11 @@ class AdoptanteController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('can:adoptantes.index')->only('index');
+        $this->middleware('can:adoptantes.create')->only('create','store');
+        $this->middleware('can:adoptantes.update')->only('edit','update');
+        $this->middleware('can:adoptantes.destroy')->only('destroy');
+
     }
     
     /**

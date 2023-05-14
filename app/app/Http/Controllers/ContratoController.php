@@ -15,6 +15,10 @@ class ContratoController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('can:contratos.index')->only('index');
+        $this->middleware('can:contratos.create')->only('create','store');
+        $this->middleware('can:contratos.update')->only('edit','update');
+        $this->middleware('can:contratos.destroy')->only('destroy');
     }
     
     /**

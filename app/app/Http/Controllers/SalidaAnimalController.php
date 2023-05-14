@@ -13,6 +13,11 @@ class SalidaAnimalController extends Controller
 
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('can:salidaAnimales.index')->only('index');
+        $this->middleware('can:salidaAnimales.create')->only('create','store');
+        $this->middleware('can:salidaAnimales.update')->only('edit','update');
+        $this->middleware('can:salidaAnimales.destroy')->only('destroy');
+
     }
     
     /**

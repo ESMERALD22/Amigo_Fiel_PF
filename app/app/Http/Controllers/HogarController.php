@@ -12,6 +12,11 @@ class HogarController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('can:hogares.index')->only('index');
+        $this->middleware('can:hogares.create')->only('create','store');
+        $this->middleware('can:hogares.update')->only('edit','update');
+        $this->middleware('can:hogares.destroy')->only('destroy');
+
     }
     
     /**

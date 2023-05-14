@@ -3,7 +3,10 @@
 @section('content')
 
 <h1>ADOPTANTES</h1>
+
+@can('adoptantes.create')
 <a href="{{ route('adoptantes.create') }}" class="btn btn-primary">Ingresar adoptante</a>
+@endcan
 <table class="table table-dark table-striped mt-4">
     <thead>
         <tr>
@@ -34,13 +37,23 @@
             <td>{{$adoptante->direccion}}</td>
             <td>{{$adoptante->detalles}}</td>
             <td>
+                @can('adoptantes.edit')
+                <a href="{{ route('adoptantes.edit',$adoptante->id) }} " class="btn btn-info">Editar</a>
+                @endcan    
+            </td>
+            <td>
+                @can('contratos.create')
+                <a href="{{ route('contratos.create',$adoptante->id) }} " class="btn btn-info">Contrato</a>
+                @endcan
+            </td>
+            <td>
+                @can('adoptantes.destroy')
                 <form action="{{ route('adoptantes.destroy',$adoptante->id) }} " method="POST">
                     @csrf
                     @method('DELETE')
-                    <a href="{{ route('adoptantes.edit',$adoptante->id) }} " class="btn btn-info">Editar</a>
-                    <a href="{{ route('contratos.create',$adoptante->id) }} " class="btn btn-info">Contrato</a>
                     <button type="submit" class="btn btn-danger">Borrar</button>
                 </form>
+                @endcan    
             </td>
         </tr>
         @endforeach
