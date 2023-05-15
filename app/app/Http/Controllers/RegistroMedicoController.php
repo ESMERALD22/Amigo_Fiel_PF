@@ -14,7 +14,7 @@ class RegistroMedicoController extends Controller
         $this->middleware('auth');
 
         $this->middleware('can:registrosMedicos.index')->only('index');
-        $this->middleware('can:regsitrosMedicos.create')->only('create','store');
+        $this->middleware('can:registrosMedicos.create')->only('create','store');
         $this->middleware('can:registrosMedicos.update')->only('edit','update');
         $this->middleware('can:registrosMedicos.destroy')->only('destroy');
     }

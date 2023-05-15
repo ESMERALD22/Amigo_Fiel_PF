@@ -30,18 +30,21 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'tipoAnimal.create'])->syncRoles([$role1]);    
         Permission::create(['name' => 'tipoAnimal.edit'])->syncRoles([$role1]);    
         Permission::create(['name' => 'tipoAnimal.destroy'])->syncRoles([$role1]);
+        Permission::create(['name' => 'tipoAnimal.show'])->syncRoles([$role1]);
 
 
         Permission::create(['name' => 'hogares.index'])->syncRoles([$role1,$role2]);    
         Permission::create(['name' => 'hogares.create'])->syncRoles([$role1,$role2]);    
         Permission::create(['name' => 'hogares.edit'])->syncRoles([$role1,$role2]);    
         Permission::create(['name' => 'hogares.destroy'])->syncRoles([$role1]);
+        Permission::create(['name' => 'hogares.show'])->syncRoles([$role1,$role2]);
 
 
         Permission::create(['name' => 'animales.index'])->syncRoles([$role1,$role2,$role3]);    
         Permission::create(['name' => 'animales.create'])->syncRoles([$role1,$role2]);    
         Permission::create(['name' => 'animales.edit'])->syncRoles([$role1,$role2]);    
         Permission::create(['name' => 'animales.destroy'])->syncRoles([$role1]);
+        Permission::create(['name' => 'animales.show'])->syncRoles([$role1,$role2,$role3]);
         
 
         Permission::create(['name' => 'contratos.index'])->syncRoles([$role1,$role2]);    
@@ -51,25 +54,33 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'contrato.show'])->syncRoles([$role1,$role2]);
         
 
-        Permission::create(['name' => 'ingresoAnimales.index'])->syncRoles([$role1,$role2,$role3]);    
+        Permission::create(['name' => 'ingresoAnimales.index'])->syncRoles([$role1,$role2]);    
         Permission::create(['name' => 'ingresoAnimales.create'])->syncRoles([$role1,$role2]);    
         Permission::create(['name' => 'ingresoAnimales.edit'])->syncRoles([$role1,$role2]);    
         Permission::create(['name' => 'ingresoAnimales.destroy'])->syncRoles([$role1]);
+        Permission::create(['name' => 'ingresoAnimales.show'])->syncRoles([$role1,$role2]);
+
 
         Permission::create(['name' => 'registrosMedicos.index'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'registrosMedicos.create'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'registrosMedicos.edit'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'registrosMedicos.destroy'])->syncRoles($role1);
+        Permission::create(['name' => 'registrosMedicos.show'])->syncRoles($role1,$role2);
 
-        Permission::create(['name' => 'salidaAnimales.index'])->syncRoles($role1,$role2,$role3);    
+
+        Permission::create(['name' => 'salidaAnimales.index'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'salidaAnimales.create'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'salidaAnimales.edit'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'salidaAnimales.destroy'])->syncRoles($role1);
+        Permission::create(['name' => 'salidaAnimales.show'])->syncRoles($role1,$role2);
+
 
         Permission::create(['name' => 'adoptantes.index'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'adoptantes.create'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'adoptantes.edit'])->syncRoles($role1,$role2);    
         Permission::create(['name' => 'adoptantes.destroy'])->syncRoles($role1);
+        Permission::create(['name' => 'adoptantes.show'])->syncRoles($role1,$role2);
+
 
         
     }

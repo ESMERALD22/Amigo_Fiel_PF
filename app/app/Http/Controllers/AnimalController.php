@@ -12,8 +12,9 @@ class AnimalController extends Controller
         $this->middleware('auth');
         $this->middleware('can:animales.index')->only('index');
         $this->middleware('can:animales.create')->only('create','store');
-        $this->middleware('can:animales.update')->only('edit','update');
+        $this->middleware('can:animales.edit')->only('edit','update');
         $this->middleware('can:animales.destroy')->only('destroy');
+        $this->middleware('can:animales.show')->only('show');
     }
     
     /**
@@ -72,7 +73,11 @@ class AnimalController extends Controller
     public function show($id)
     {
         $animal = Animal::find($id);
-        return $animal;
+        $tiposAnimales = TipoAnimal::all();
+
+        return view("animales.show", compact('tiposAnimales', 'animal')); //devuelve form y carga tipos de animaes existentes
+
+
     }
 
     /**

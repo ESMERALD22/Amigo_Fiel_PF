@@ -57,5 +57,8 @@ Route::resource('contratos', ContratoController::class);
 
 Route::get('vista/{id}', [VistaController::class, 'ver']);
 Route::get('hogar/{id}', [VistaController::class, 'elegirHogar']);
+Route::get('registros/{id}', [VistaController::class, 'infoRegMed']);
+Route::get('hogaresA/{id}', [VistaController::class, 'infoHogares']);
+Route::get('contratoA/{id}', [VistaController::class, 'infoContrato']);
 
 Route::resource('users', UserController::class);

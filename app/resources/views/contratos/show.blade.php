@@ -3,7 +3,7 @@
 @section('content')
 <h1>VISTA  DE CONTRATO</h1>
 
-<form action="{{ route('contratos.store')}}" method="POST" enctype="multipart/form-data">
+<form  enctype="multipart/form-data">
     @csrf
 
     <div class="mb-3">

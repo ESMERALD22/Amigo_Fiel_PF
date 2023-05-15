@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Adoptante;use Illuminate\Http\Request;
+use App\Models\Adoptante;
+use Illuminate\Http\Request;
 
 use App\Http\Requests\UpdateAdoptanteRequest;
-
+use Illuminate\Database\QueryException;
 class AdoptanteController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
         $this->middleware('can:adoptantes.index')->only('index');
         $this->middleware('can:adoptantes.create')->only('create','store');
-        $this->middleware('can:adoptantes.update')->only('edit','update');
+        $this->middleware('can:adoptantes.edit')->only('edit','update');
         $this->middleware('can:adoptantes.destroy')->only('destroy');
+        $this->middleware('can:adoptantes.show')->only('show');
 
     }
     
@@ -41,18 +43,24 @@ class AdoptanteController extends Controller
     {
 
         request()->validate(Adoptante::$rules);
-        $adoptante = Adoptante::create($request->all());
-
-        return redirect()->route('adoptantes.index')->with('success', 'Adoptante created successfully.');
+        try{
+            $adoptante = Adoptante::create($request->all());
+            return redirect()->route('adoptantes.index')->with('success', 'Adoptante created successfully.');
+        }catch(QueryException $ex){
+            return redirect()->route('adoptantes.index')->with('error', 'Error');
+        }
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Adoptante $adoptante)
+    public function show( $id)
     {
-        //
+        $adoptante = Adoptante::find($id);
+
+        return view('adoptantes.show', compact('adoptante'));
+
     }
 
     /**

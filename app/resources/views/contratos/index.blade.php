@@ -3,9 +3,6 @@
 @section('content')
 
 <h1>CONTRATOS</h1>
-@can('animales.index')
-<a href="{{ route('animales.index') }}" class="btn btn-primary">Generar contrato</a>
-@endcan
 
 <table class="table table-dark table-striped mt-4">
     <thead>

@@ -1,11 +1,13 @@
 @extends('layouts.plantillabase')
 
 @section('content')
-    <h1>HOGARES TEMPORALES</h1>
+    <h1><b>
+            <center> HOGARES TEMPORALES</center>
+    </h1>
     @can('hogares.create')
-        <a href="{{ route('hogares.create') }}" class="btn btn-primary">Registrar hogar temporal</a>
+        <a href="{{ route('hogares.create') }}" class="btn-lg btn-primary">Registrar hogar temporal</a>
     @endcan
-    
+
     <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>
@@ -25,8 +27,13 @@
                     <td>{{ $hogar->telefono2 }}</td>
                     <td>{{ $hogar->direccion }}</td>
                     <td>
+                        @can('hogares.show')
+                            <a href="{{ route('hogares.show', $hogar->id) }} " class="btn btn-info">Información</a>
+                        @endcan
+                    </td>
+                    <td>
                         @can('hogares.edit')
-                            <a href="{{ route('hogares.edit', $hogar->id) }} " class="btn btn-info">Editar</a>
+                            <a href="{{ route('hogares.edit', $hogar->id) }} " class="btn btn-success">Editar</a>
                         @endcan
                     </td>
                     <td>

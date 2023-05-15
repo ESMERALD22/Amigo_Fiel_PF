@@ -14,8 +14,10 @@ class HogarController extends Controller
         $this->middleware('auth');
         $this->middleware('can:hogares.index')->only('index');
         $this->middleware('can:hogares.create')->only('create','store');
-        $this->middleware('can:hogares.update')->only('edit','update');
+        $this->middleware('can:hogares.edit')->only('edit','update');
         $this->middleware('can:hogares.destroy')->only('destroy');
+        $this->middleware('can:hogares.show')->only('show');
+
 
     }
     
@@ -55,9 +57,12 @@ class HogarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Hogar $hogar)
+    public function show( $id)
     {
-        //
+        $hogar = Hogar::find($id);
+
+        return view('hogares.show', compact('hogar'));
+
     }
 
     /**
