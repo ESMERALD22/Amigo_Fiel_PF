@@ -7,6 +7,7 @@ use App\Models\Animal;
 use App\Models\Contrato;
 use App\Models\Adoptante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreContratoRequest;
 use App\Http\Requests\UpdateContratoRequest;
@@ -65,6 +66,7 @@ class ContratoController extends Controller
         ]);
 
         $contrato = Contrato::create($request->all());
+        //actualizar el estado del animal 
         return redirect()->route('contratos.index')->with('success', 'contrato creado');
     }
 
@@ -74,8 +76,10 @@ class ContratoController extends Controller
     public function show($id)
     {
         $contrato = Contrato::find($id);
-
-        return view('contratos.show', compact('contrato'));
+        $fcha = $contrato->fechaSalida;
+        $date = Carbon::createFromFormat('Y-m-d', $fcha);
+        $date = $date->locale('es')->translatedFormat('l d \d\e F \d\e\l Y');
+        return view('contratos.show', compact('contrato','date'));
 
     }
 

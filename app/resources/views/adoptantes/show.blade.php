@@ -35,7 +35,7 @@
         <div class="mb-3">
             <label for="" class="form-label">Teléfono 2 :</label>
             <input id="telefono2" name="telefono2" type="text" class="form-control" tabindex="3"
-                value="{{ $adoptante->tlefno2 }}" readonly>
+                value="{{ $adoptante->telefono2 }}" readonly>
         </div>
 
         <div class="mb-3">
@@ -55,7 +55,7 @@
         </div>
 
         <div>
-            <a href="/animales" class="btn btn-secondary" tabindex="5">Regresar</a>
+            <a href="/adoptantes" class="btn btn-secondary" tabindex="5">Regresar</a>
         </div>
 
         <div>

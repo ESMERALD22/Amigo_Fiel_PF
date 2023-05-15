@@ -6,6 +6,7 @@ use App\Models\Animal;
 use App\Models\TipoAnimal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+
 class AnimalController extends Controller
 {
     public function __construct(){
@@ -17,14 +18,12 @@ class AnimalController extends Controller
         $this->middleware('can:animales.show')->only('show');
     }
     
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tiposAnimales = TipoAnimal::all();
 
-        $animales = Animal::all();
+        $animales = Animal::where('id','>',0)->paginate(5);
         return view("animales.index", compact('animales', 'tiposAnimales')); //devuelve form y carga tipos de animaes existentes
 
     }

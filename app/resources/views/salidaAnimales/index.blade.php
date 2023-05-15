@@ -3,10 +3,6 @@
 @section('content')
     <h1>REGISTROS DE SALIDAS DE ANIMALES </h1>
 
-    @can('animales.index')
-        <a href="{{ route('animales.index') }}" class="btn btn-primary">Registrar salida de animal </a>
-    @endcan
-
     <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>

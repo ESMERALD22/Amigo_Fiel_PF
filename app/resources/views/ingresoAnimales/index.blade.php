@@ -2,10 +2,8 @@
 
 @section('content')
     <h1>REGISTRO DE INGRESOS DE ANIMALES EN HOGARES TEMPORALES</h1>
-    
-    @can('animales.index')
-        <a href="{{ route('animales.index') }}" class="btn btn-primary">Ingresar animal en hogar temporal</a>
-    @endcan
+
+
 
     <table class="table table-dark table-striped mt-4">
         <thead>

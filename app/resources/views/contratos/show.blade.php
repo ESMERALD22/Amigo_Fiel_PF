@@ -8,7 +8,7 @@
 
     <div class="mb-3">
         <h3> Fecha : </h3>
-        <label for="" class="form-label"> {{ $contrato->fechaSalida }} </label>
+        <label for="" class="form-label"> {{ $date }} </label>
     </div>
 
     <div>
