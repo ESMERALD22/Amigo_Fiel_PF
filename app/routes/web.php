@@ -29,7 +29,7 @@ use App\Models\TipoAnimal;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::middleware([
