@@ -11,6 +11,7 @@ use App\Http\Controllers\AdoptanteController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VistaController;
+use App\Http\Controllers\CatalogoController;
 
 
 
@@ -28,8 +29,13 @@ use App\Models\TipoAnimal;
 |
 */
 
+
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('catalogo', function () {
+    return view('catalogo');
 });
 
 Route::middleware([
@@ -60,5 +66,7 @@ Route::get('hogar/{id}', [VistaController::class, 'elegirHogar']);
 Route::get('registros/{id}', [VistaController::class, 'infoRegMed']);
 Route::get('hogaresA/{id}', [VistaController::class, 'infoHogares']);
 Route::get('contratoA/{id}', [VistaController::class, 'infoContrato']);
+Route::get('catalogo', [CatalogoController::class, 'catalogo']);
+
 
 Route::resource('users', UserController::class);

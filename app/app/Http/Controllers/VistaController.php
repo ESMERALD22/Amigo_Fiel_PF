@@ -37,6 +37,9 @@ class VistaController extends Controller
         $animal = Animal::find($id);
         return view("animales.registros", compact('registros','animal'));
     }
+     
+   
+    
 
     public function infoHogares($id)
     {
