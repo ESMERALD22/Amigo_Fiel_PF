@@ -11,8 +11,8 @@ class Hogar extends Model
 
     static $rules = [
         'nombreEncargado' => 'required',
-		'telefono1' => 'required',
-		'telefono2' => 'required',
+		'telefono1' => 'required|digits:8',
+		'telefono2' => 'required|digits:8',
 		'direccion' => 'required',
 		'descripcionLugar' => 'required',
 		'animalesPropios' => 'required',

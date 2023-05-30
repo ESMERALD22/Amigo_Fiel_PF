@@ -7,18 +7,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\UpdateAdoptanteRequest;
 use Illuminate\Database\QueryException;
+
 class AdoptanteController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('can:adoptantes.index')->only('index');
-        $this->middleware('can:adoptantes.create')->only('create','store');
-        $this->middleware('can:adoptantes.edit')->only('edit','update');
+        $this->middleware('can:adoptantes.create')->only('create', 'store');
+        $this->middleware('can:adoptantes.edit')->only('edit', 'update');
         $this->middleware('can:adoptantes.destroy')->only('destroy');
         $this->middleware('can:adoptantes.show')->only('show');
-
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -43,24 +44,22 @@ class AdoptanteController extends Controller
     {
 
         request()->validate(Adoptante::$rules);
-        try{
+        try {
             $adoptante = Adoptante::create($request->all());
-            return redirect()->route('adoptantes.index')->with('success', 'Adoptante created successfully.');
-        }catch(QueryException $ex){
+            return redirect()->route('adoptantes.index')->with('success', 'Adoptante registrado correctamente');
+        } catch (QueryException $ex) {
             return redirect()->route('adoptantes.index')->with('error', 'Error');
         }
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show($id)
     {
         $adoptante = Adoptante::find($id);
 
         return view('adoptantes.show', compact('adoptante'));
-
     }
 
     /**
@@ -79,11 +78,13 @@ class AdoptanteController extends Controller
     {
         $adoptante = Adoptante::find($id);
         request()->validate(Adoptante::$rules);
-        $adoptante->update($request->all());
-
-        return redirect()->route('adoptantes.index')
-            ->with('success', 'Adoptante updated successfully');
-        
+        try {
+            $adoptante->update($request->all());
+            return redirect()->route('adoptantes.index')
+                ->with('success', 'Adoptante actualizado correctamente');
+        } catch (QueryException $ex) {
+            return redirect()->route('adoptantes.index')->with('error', 'Error');
+        }
     }
 
     /**
@@ -91,10 +92,13 @@ class AdoptanteController extends Controller
      */
     public function destroy($id)
     {
-        $adoptante = Adoptante::find($id)->delete();
+        try {
+            $adoptante = Adoptante::find($id)->delete();
 
-        return redirect()->route('adoptantes.index')
-            ->with('success', 'Departamento deleted successfully');
-
+            return redirect()->route('adoptantes.index')
+                ->with('success', 'Adoptante eliminado correctamente');
+        } catch (QueryException $ex) {
+            return redirect()->route('adoptantes.index')->with('error', 'Error');
+        }
     }
 }
