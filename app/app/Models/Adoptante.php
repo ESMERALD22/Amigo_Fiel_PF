@@ -11,9 +11,9 @@ class Adoptante extends Model
     static $rules = [
         'nombre' => 'required',
 		'apellido' => 'required',
-		'dpi' => 'required',
-		'telefono1' => 'required',
-		'telefono2' => 'required',
+		'dpi' => 'required|digits:13',
+		'telefono1' => 'required|digits:8',
+		'telefono2' => 'required|digits:8',
 		'correo' => 'required',
 		'direccion' => 'required',
 		'detalles' => 'required',

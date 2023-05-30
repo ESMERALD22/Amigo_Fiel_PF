@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreContratoRequest;
 use App\Http\Requests\UpdateContratoRequest;
+use Illuminate\Database\QueryException;
 
 class ContratoController extends Controller
 {
@@ -18,7 +19,7 @@ class ContratoController extends Controller
         $this->middleware('auth');
         $this->middleware('can:contratos.index')->only('index');
         $this->middleware('can:contratos.create')->only('create','store');
-        $this->middleware('can:contratos.update')->only('edit','update');
+        $this->middleware('can:contratos.edit')->only('edit','update');
         $this->middleware('can:contratos.destroy')->only('destroy');
     }
     
@@ -48,6 +49,9 @@ class ContratoController extends Controller
         $socio=Socio::find(1);
 
         return view("contratos.create", compact('adoptante', 'animal', 'socio'));
+
+
+        
     }
 
     /**
@@ -65,9 +69,12 @@ class ContratoController extends Controller
 		'observacion' => 'required',
         ]);
 
-        $contrato = Contrato::create($request->all());
-        //actualizar el estado del animal 
-        return redirect()->route('contratos.index')->with('success', 'contrato creado');
+        try{
+            $contrato = Contrato::create($request->all());
+            return redirect()->route('contratos.index')->with('success', 'Contrato registrado correctamente');
+        }catch(QueryException $ex){
+            return redirect()->route('contratos.index')->with('error', 'Error');
+        }
     }
 
     /**

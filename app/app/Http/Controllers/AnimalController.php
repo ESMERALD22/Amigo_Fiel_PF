@@ -6,24 +6,26 @@ use App\Models\Animal;
 use App\Models\TipoAnimal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\QueryException;
 
 class AnimalController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('can:animales.index')->only('index');
-        $this->middleware('can:animales.create')->only('create','store');
-        $this->middleware('can:animales.edit')->only('edit','update');
+        $this->middleware('can:animales.create')->only('create', 'store');
+        $this->middleware('can:animales.edit')->only('edit', 'update');
         $this->middleware('can:animales.destroy')->only('destroy');
         $this->middleware('can:animales.show')->only('show');
     }
-    
+
 
     public function index()
     {
         $tiposAnimales = TipoAnimal::all();
 
-        $animales = Animal::where('id','>',0)->paginate(5);
+        $animales = Animal::all();
         return view("animales.index", compact('animales', 'tiposAnimales')); //devuelve form y carga tipos de animaes existentes
 
     }
@@ -33,7 +35,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        
+
         //hembra o macho
         $tiposAnimales = TipoAnimal::all();
 
@@ -51,20 +53,22 @@ class AnimalController extends Controller
         request()->validate(Animal::$rules);
         //creamos el animal$animal
         $animal = new Animal;
-        $animal = Animal::create($request->all());
+        try {
+            $animal = Animal::create($request->all());
 
-        if ($request->hasfile('foto')); 
-        {
-            $file = $request->file('foto');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
-            $file->move('uploads/animales/', $filename);
-            $animal->foto = $filename;
-            $animal->save();
+            if ($request->hasfile('foto')); {
+                $file = $request->file('foto');
+                $extention = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extention;
+                $file->move('uploads/animales/', $filename);
+                $animal->foto = $filename;
+                $animal->save();
+            }
+            return redirect()->route('animales.index')->with('success', 'Animal registrado correctamente.');
+        } catch (QueryException $ex) {
+            return redirect()->route('animales.index')->with('error', 'Error');
         }
-        return redirect()->route('animales.index')->with('success', 'Departamento created successfully.');
- 
-}
+    }
 
     /**
      * Display the specified resource.
@@ -98,39 +102,38 @@ class AnimalController extends Controller
     {
         $animal = Animal::find($id);
         request()->validate([
-        'sexo' => 'required',
-		'idTipoAnimal' => 'required',
-		'raza' => 'required',
-		'nombreRaza' => 'required',
-		'nombre' => 'required',
-		'fechaNacimiento' => 'required',
-		'edad' => 'required',
-		'descripcion' => 'required'
+            'sexo' => 'required',
+            'idTipoAnimal' => 'required',
+            'raza' => 'required',
+            'nombreRaza' => 'required',
+            'nombre' => 'required',
+            'fechaNacimiento' => 'required',
+            'edad' => 'required',
+            'descripcion' => 'required'
         ]);
+        try {
 
-        $animal->update($request->all());
+            $animal->update($request->all());
 
-        if ($request->hasfile('foto')){
-              
-            $destination = 'uploads/animales/' . $animal->foto;
-            if (File::exists($destination)) {
-                File::delete($destination);
+            if ($request->hasfile('foto')) {
+
+                $destination = 'uploads/animales/' . $animal->foto;
+                if (File::exists($destination)) {
+                    File::delete($destination);
+                }
+                $file = $request->file('foto');
+                $extention = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extention;
+                $file->move('uploads/animales/', $filename);
+                $animal->foto = $filename;
+                $animal->save();
             }
-            $file = $request->file('foto');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
-            $file->move('uploads/animales/', $filename);
-            $animal->foto = $filename;
-            $animal->save();
+
+            return redirect()->route('animales.index')->with('success', 'Animal actualizado correctamente');
+        } catch (QueryException $ex) {
+            return redirect()->route('animales.index')->with('error', 'Error');
         }
-
-
-/*      $animal = Animal::find($id);
-        request()->validate(Animal::$rules);
-        $animal->update($request->all());
-*/
-        return redirect()->route('animales.index')->with('success', 'Animal actualizado');
-       }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -138,7 +141,11 @@ class AnimalController extends Controller
     public function destroy($id)
     {
         $animal = Animal::find($id);
-        $animal->delete();
-        return redirect()->route('animales.index')->with('success', 'Animal elimindado');
+        try {
+            $animal->delete();
+            return redirect()->route('animales.index')->with('success', 'Animal elimindado correctamente');
+        } catch (QueryException $ex) {
+            return redirect()->route('animales.index')->with('error', 'Error');
+        }
     }
 }

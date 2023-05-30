@@ -1,4 +1,5 @@
 import './bootstrap';
+import DataTable from 'datatables.net-dt';
 
 import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';

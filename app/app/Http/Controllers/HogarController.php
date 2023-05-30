@@ -6,6 +6,7 @@ use App\Models\Hogar;
 use App\Http\Requests\StoreHogarRequest;
 use App\Http\Requests\UpdateHogarRequest;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 
 class HogarController extends Controller
@@ -45,12 +46,18 @@ class HogarController extends Controller
      */
     public function store(Request $request)
     {
-        
         request()->validate(Hogar::$rules);
-        //creamos el animal$animal
-        $animal = Hogar::create($request->all());
+        
+        try{
+            $hogar = Hogar::create($request->all());
+            return redirect()->route('hogares.index')->with('success', 'Hogar registrado correctamente');
+        }catch(QueryException $ex){
+            return redirect()->route('hogares.index')->with('error', 'Error');
+        }
 
-        return redirect()->route('hogares.index')->with('success', 'Hogar created successfully.');
+
+        //creamos el animal$animal
+
 
     }
 
@@ -82,10 +89,14 @@ class HogarController extends Controller
     {
         $hogar = Hogar::find($id);
         request()->validate(Hogar::$rules);
-        $hogar->update($request->all());
-
-        return redirect()->route('hogares.index')
-            ->with('success', 'Adoptante updated successfully');
+        
+        try{
+            $hogar->update($request->all());       
+            return redirect()->route('hogares.index')
+            ->with('success', 'Hogar actualizado correctamente');
+         }catch(QueryException $ex){
+            return redirect()->route('hogares.index')->with('error', 'Error');
+        }
     }
 
     /**
@@ -93,10 +104,12 @@ class HogarController extends Controller
      */
     public function destroy($id)
     {
-        $hogar = Hogar::find($id)->delete();
-
-        return redirect()->route('hogares.index')
-            ->with('success', 'Departamento deleted successfully');
-
+        try{
+            $hogar = Hogar::find($id)->delete();
+            return redirect()->route('hogares.index')
+            ->with('success', 'Hogar eliminado correctamente');
+        }catch(QueryException $ex){
+            return redirect()->route('hogares.index')->with('error', 'Error');
+        }
     }
 }
