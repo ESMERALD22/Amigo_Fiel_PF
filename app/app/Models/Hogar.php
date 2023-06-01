@@ -17,7 +17,7 @@ class Hogar extends Model
 		'descripcionLugar' => 'required',
 		'animalesPropios' => 'required',
 		'tiempoDisponible' => 'required',
-		'miembrosFam' => 'required',
+		'miembrosFam' => 'required'
     ];
 
 
