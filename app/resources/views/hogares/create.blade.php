@@ -1,23 +1,11 @@
 @extends('layouts.plantillabase')
 
 
-
 @section('content')
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-    @if ($message = Session::get('error'))
-        <div class="alert alert-danger">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
 
     @if ($errors->any())
         <div class="alert alert-danger">
-            <h6>Error en campos, por favor verifique la Información:</h6>
+            <h6>Error en campos, por favor verifique la información:</h6>
         </div>
     @endif
 

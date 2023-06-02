@@ -46,36 +46,6 @@ class HogarController extends Controller
     public function store(Request $request)
     {
         request()->validate(Hogar::$rules);
-
-        /*        $validator = Validator::make(
-            $request->all(),
-            [
-                'nombreEncargado' => 'required',
-                'telefono1' => [
-                    'required'  => 'The :attribute field is required.',
-                    'digits:8'
-                ],
-                'telefono2' => 'required|digits:8',
-                'direccion' => 'required',
-                'descripcionLugar' => 'required',
-                'animalesPropios' => 'required',
-                'tiempoDisponible' => 'required',
-                'miembrosFam' => 'required',
-            ]
-        );
-
-        /*        if ($validator->fails()) {
-            return redirect()->route('hogares.index')->with('error', 'Hogar con error');
-        } else {
-            try {
-                $hogar = Hogar::create($request->all());
-                return redirect()->route('hogares.index')->with('success', 'Hogar registrado correctamente');
-            } catch (QueryException $ex) {
-                return redirect()->route('hogares.index')->with('error', 'Error');
-            }
-        }
-  */
-
         try {
             $hogar = Hogar::create($request->all());
             return redirect()->route('hogares.index')->with('success', 'Hogar registrado correctamente');
@@ -117,7 +87,7 @@ class HogarController extends Controller
             return redirect()->route('hogares.index')
                 ->with('success', 'Hogar actualizado correctamente');
         } catch (QueryException $ex) {
-            return redirect()->route('hogares.index')->with('error', 'Error');
+            return redirect()->route('hogares.index')->with('error', 'Error, no se actualizo el hogar');
         }
     }
 
@@ -131,7 +101,7 @@ class HogarController extends Controller
             return redirect()->route('hogares.index')
                 ->with('success', 'Hogar eliminado correctamente');
         } catch (QueryException $ex) {
-            return redirect()->route('hogares.index')->with('error', 'Error');
+            return redirect()->route('hogares.index')->with('error', 'Error, no se elimino el hogar');
         }
     }
 }
