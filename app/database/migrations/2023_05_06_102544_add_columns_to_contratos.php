@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('contratos', function (Blueprint $table) {
             $table->foreign('idAdoptante')->references('id')->on('adoptantes');
             $table->foreign('idAnimal')->references('id')->on('animales');
-            $table->foreign('idSocio')->references('id')->on('socios');
+            $table->foreign('idSocio')->references('id')->on('users');
             
         });
     }

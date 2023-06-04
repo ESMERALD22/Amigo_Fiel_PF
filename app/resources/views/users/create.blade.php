@@ -39,11 +39,14 @@
 
 
                 <div class="flex items-center justify-end mt-4">
-                    <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>
-
-                    <x-button class="ml-4">
-                        {{ __('Register') }}
-                    </x-button>
+                    @can('users.index')
+                        <a href="/users" class="btn btn-secondary" tabindex="5">Cancelar</a>
+                    @endcan
+                    @can('users.create')
+                        <x-button class="ml-4">
+                            {{ __('Register') }}
+                        </x-button>
+                    @endcan
                 </div>
             </form>
 

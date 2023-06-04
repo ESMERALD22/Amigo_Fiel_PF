@@ -66,7 +66,7 @@ class AnimalController extends Controller
             }
             return redirect()->route('animales.index')->with('success', 'Animal registrado correctamente.');
         } catch (QueryException $ex) {
-            return redirect()->route('animales.index')->with('error', 'Error');
+            return redirect()->route('animales.index')->with('error', 'Error, no se registro el animal');
         }
     }
 
@@ -107,7 +107,6 @@ class AnimalController extends Controller
             'raza' => 'required',
             'nombreRaza' => 'required',
             'nombre' => 'required',
-            'fechaNacimiento' => 'required',
             'edad' => 'required',
             'descripcion' => 'required'
         ]);
@@ -131,7 +130,7 @@ class AnimalController extends Controller
 
             return redirect()->route('animales.index')->with('success', 'Animal actualizado correctamente');
         } catch (QueryException $ex) {
-            return redirect()->route('animales.index')->with('error', 'Error');
+            return redirect()->route('animales.index')->with('error', 'Error, no se actualizo el animal');
         }
     }
 
@@ -145,7 +144,7 @@ class AnimalController extends Controller
             $animal->delete();
             return redirect()->route('animales.index')->with('success', 'Animal elimindado correctamente');
         } catch (QueryException $ex) {
-            return redirect()->route('animales.index')->with('error', 'Error');
+            return redirect()->route('animales.index')->with('error', 'Error, no se elimino el animal');
         }
     }
 }

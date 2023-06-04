@@ -8,7 +8,7 @@
 
 @section('content')
     <h1><b>
-            <center> CONTRATOS</center>
+            <center> CONTRATOS DE: {{ $animal->nombre }}</center>
     </h1>
 
     @can('animales.show')
@@ -52,13 +52,15 @@
                             <td>{{ $contrato->estado }}</td>
 
                             <td>
-                                @can('contrato.show')
+                                @can('contratos.show')
                                     <a href="{{ route('contratos.show', $contrato->id) }} " class="btn btn-info">VER
                                         CONTRATO</a>
                                 @endcan
                             </td>
                             <td>
-                                <a href=" " class="btn btn-success">Imprimir</a>
+                                @can('contratos.show')
+                                <a href="print/{{$contrato->id}}" class="btn btn-success">Imprimir</a>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

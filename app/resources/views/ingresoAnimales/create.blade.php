@@ -1,69 +1,114 @@
 @extends('layouts.plantillabase')
 
 @section('content')
-<h1> INGRESO DE ANIMAL EN UN HOGAR TEMPORAL </h1>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <h6>Error en campos, por favor verifique la información:</h6>
+        </div>
+    @endif
 
-<form action="{{ route('ingresoAnimales.store')}}" method="POST" enctype="multipart/form-data" >
-    @csrf
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
 
-    <div class="mb-3">
-        <label for="" class="form-label">Fecha de ingreso del animal :</label>
-        <input id="fechaIngreso" name="fechaIngreso" type="date" class="form-control" tabindex="3">
-    </div>  
-
-    <div class="mb-3">
-        <label for="" class="form-label">Procedencia :</label>
-        <input id="procedencia" name="procedencia" type="text" class="form-control" tabindex="3">
-    </div>
-
-    <div class="mb-3">
-        <label for="" class="form-label">Otros detalles :</label>
-        <input id="detalle" name="detalle" type="text" class="form-control" tabindex="3">
-    </div>
-
-    <div>
-        <h3> Datos del hogar temporal </h3>
-    </div>
-    <div>
-        <label for="" class="form-label"> Nombre del encargado: {{ $hogar->nombreEncargado }} </label>
-    </div>
-    <div>
-        <label for="" class="form-label"> Dirección : {{ $hogar->direccion }} </label>
-    </div>
+            <div class="formbold-form-title">
+                <h1><b>
+                        INGRESO DE ANIMALES </h1>
+            </div>
 
 
-    <div>
-        <h3> Datos del animal </h3>
-    </div>
-    <div>
-        <label for="" class="form-label"> Nombre: {{ $animal->nombre }} </label>
-    </div>
-    <div>
-        <label for="" class="form-label"> Especie: {{ $animal->TipoAnimal->tipo  }} </label>
-    </div>
-    <div>
-        <label for="" class="form-label"> Sexo: {{ $animal->sexo }} </label>
-    </div>
-    <div>
-        <label for="" class="form-label"> Raza: {{ $animal->raza }} </label>
-    </div>
-    <div>
-        <label for="" class="form-label"> Nombre de la raza: {{ $animal->nombreRaza }} </label>
-    </div>
-    <div>
-        <label for="" class="form-label"> Procedencia: {{ $animal->procedencia }} </label>
-    </div>
+            <form action="{{ route('ingresoAnimales.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
 
-        <!-- Dejar estos input invisible solo se necesita para mandar ids -->
-    <input type="hidden" id="idAnimal" name="idAnimal" type="text" value="{{$animal->id}}">
-    <input type="hidden" id="idHogar" name="idHogar" type="text" value="{{$hogar->id}}">
+                <div class="mb-3">
+                    <label for="" class="form-label">Fecha de ingreso del animal :</label>
+                    <input id="fechaIngreso" name="fechaIngreso" type="date" class="form-control" required
+                        value={{ old('fechaIngreso') }}>
+                    @if ($errors->has('fechaIngreso'))
+                        <p class="alert alert-danger">Ingrese fecha </p>
+                    @endif
+                </div>
 
+                <div class="mb-3">
+                    <label for="" class="form-label">Procedencia :</label>
+                    <input id="procedencia" name="procedencia" type="text" class="form-control" required
+                        value={{ old('Procedencia') }}>
+                    @if ($errors->has('procedencia'))
+                        <p class="alert alert-danger">Ingrese Procedencias </p>
+                    @endif
+                </div>
 
-    <a href="/ingresoAnimales" class="btn btn-secondary" tabindex="5">Cancelar</a>
-    <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+                <div class="mb-3">
+                    <label for="" class="form-label">Otros detalles :</label>
+                    <input id="detalle" name="detalle" type="text" class="form-control" required
+                        value={{ old('detalle') }}>
+                    @if ($errors->has('detalle'))
+                        <p class="alert alert-danger">Ingrese otros detalles </p>
+                    @endif
+                </div>
+
+                <div>
+                    <h3> Datos del hogar temporal </h3>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="formbold-form-label"> Nombre del encargado:
+                    </label>
+                    <input id="hogar1" name="hogar1" type="text" class="form-control" readonly
+                        value={{ $hogar->nombreEncargado }} readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="formbold-form-label"> Dirección : </label>
+                    <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
+                        value={{ $hogar->direccion }}>
+                </div>
+                <div>
+                    <h3> Datos del animal </h3>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="formbold-form-label"> Nombre:</label>
+                    <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
+                        value={{ $animal->nombre }}>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="formbold-form-label"> Especie: </label>
+                    <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
+                        value={{ $animal->TipoAnimal->tipo }}>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="formbold-form-label"> Sexo: </label>
+                    <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
+                        value={{ $animal->sexo }}>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="formbold-form-label"> Raza: </label>
+                    <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
+                        value={{ $animal->raza }}>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="formbold-form-label"> Nombre de la raza:
+                        <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
+                            value={{ $animal->nombreRaza }}>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="formbold-form-label"> Procedencia: </label>
+                    <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
+                        value={{ $animal->procedencia }}>
+                </div>
+
+                <!-- Dejar estos input invisible solo se necesita para mandar ids -->
+                <input type="hidden" id="idAnimal" name="idAnimal" type="text" value="{{ $animal->id }}">
+                <input type="hidden" id="idHogar" name="idHogar" type="text" value="{{ $hogar->id }}">
+
+                @can('ingresoAnimales.index')
+                    <a href="/ingresoAnimales" class="btn btn-secondary">Cancelar</a>
+                @endcan
+                @can('ingresoAnimales.create')
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                @endcan
+            </form>
+
+        </div>
     </div>
-
-
-</form>
-
 @endsection

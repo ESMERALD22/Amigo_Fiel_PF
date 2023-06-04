@@ -16,8 +16,8 @@ return new class extends Migration
             $table->enum('sexo', ['Hembra', 'Macho']);
             $table->unsignedInteger('idTipoAnimal');
             $table->enum('raza',['Raza', 'Mestizo']);
-            $table->string('nombreRaza',100)->nullable();
-            $table->string('nombre',100)->nullable();
+            $table->string('nombreRaza',200)->nullable();
+            $table->string('nombre',200)->nullable();
             $table->date('fechaNacimiento')->nullable();
             $table->integer('edad')->nullable();
             $table->text('descripcion');

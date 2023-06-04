@@ -9,20 +9,23 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Actions\Fortify\PasswordValidationRules;
+use Illuminate\Database\QueryException;
 
 
 class UserController extends Controller
 {
     use PasswordValidationRules;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('can:users.index')->only('index');
-        $this->middleware('can:users.create')->only('create','store');
-        $this->middleware('can:users.edit')->only('edit','update');
+        $this->middleware('can:users.create')->only('create', 'store');
+        $this->middleware('can:users.edit')->only('edit', 'update');
         $this->middleware('can:users.destroy')->only('destroy');
+        $this->middleware('can:users.show')->only('show');
     }
-    
+
     public function index()
     {
         $usuarios = User::all();
@@ -34,8 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view("users.create"); 
-        
+        return view("users.create");
     }
 
     /**
@@ -43,22 +45,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-    
+
         request()->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
         ]);
 
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        try {
+            User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
 
-//        $usuario = User::create($request->all());
 
-        return redirect()->route('users.index');
+            return redirect()->route('users.index')->with('success', 'Usuario registrado correctamente');;
+        } catch (QueryException $ex) {
+            return redirect()->route('users.index')->with('error', 'Error, no se registro el usuario');;
+        }
     }
 
     /**
@@ -85,8 +90,12 @@ class UserController extends Controller
     public function update(Request $request,  $id)
     {
         $user = User::find($id);
-        $user->roles()->sync($request->rol);
-        return redirect()->route('users.index');
+        try {
+            $user->roles()->sync($request->rol);
+            return redirect()->route('users.index')->with('success', 'Rol de usuario actualizado correctamente');;
+        } catch (QueryException $ex) {
+            return redirect()->route('users.index')->with('error', 'Error, no se actualizo el rol del usuario');;
+        }
     }
 
 

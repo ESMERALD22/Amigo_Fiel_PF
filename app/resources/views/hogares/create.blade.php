@@ -2,7 +2,6 @@
 
 
 @section('content')
-
     @if ($errors->any())
         <div class="alert alert-danger">
             <h6>Error en campos, por favor verifique la información:</h6>
@@ -96,10 +95,12 @@
                         <p class="alert alert-danger">Llene este campo </p>
                     @endif
                 </div>
-
-                <a href="/hogares" class="btn btn-secondary" tabindex="5">Cancelar</a>
-                <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
-
+                @can('hogares.index')
+                    <a href="/hogares" class="btn btn-secondary" tabindex="5">Cancelar</a>
+                @endcan
+                @can('hogares.create')
+                    <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+                @endcan
                 <div>
                     <br />
                 </div>

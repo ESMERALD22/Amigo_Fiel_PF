@@ -10,7 +10,6 @@ class Contrato extends Model
     public $table = "contratos";
 
     static $rules = [
-        'idContrato' => 'required',
 		'fechaSalida' => 'required',
 		'idAnimal' => 'required',
 		'idAdoptante' => 'required',
@@ -45,5 +44,8 @@ class Contrato extends Model
     }
     public function Adoptante1(){
         return $this->hasOne('App\Models\Adoptante','id','idAdoptante');
+    }
+    public function User(){
+        return $this->hasOne('App\Models\User','id','idSocio');
     }
 }

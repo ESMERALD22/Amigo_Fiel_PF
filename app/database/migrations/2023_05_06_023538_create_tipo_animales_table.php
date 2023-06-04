@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tipo_animales', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo',100);
+            $table->string('tipo',200);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent(); 
                });

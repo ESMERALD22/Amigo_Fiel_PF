@@ -67,8 +67,12 @@
                 </div>
 
 
-                <a href="/adoptantes" class="btn btn-secondary" tabindex="5">Cancelar</a>
-                <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+                @can('adoptantes.index')
+                    <a href="/adoptantes" class="btn btn-secondary" tabindex="5">Cancelar</a>
+                @endcan
+                @can('adoptantes.edit')
+                    <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+                @endcan
 
 
             </form>

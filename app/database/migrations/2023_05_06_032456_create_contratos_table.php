@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('idContrato',100);
+            $table->string('idContrato',200);
             $table->date('fechaSalida');
             $table->unsignedInteger('idAnimal');
             $table->unsignedInteger('idAdoptante');

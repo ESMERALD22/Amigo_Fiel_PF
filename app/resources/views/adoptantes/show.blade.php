@@ -20,7 +20,7 @@
                             value="{{ $adoptante->nombre }}" readonly>
                     </div>
 
-                    <div >
+                    <div>
                         <label for="" class="formbold-form-label">Apellido :</label>
                         <input id="apellido" name="apellido" type="text" class="form-control" tabindex="3"
                             value="{{ $adoptante->apellido }}" readonly>
@@ -65,7 +65,9 @@
                 </div>
 
                 <div>
-                    <a href="/adoptantes" class="btn btn-secondary" tabindex="5">Regresar</a>
+                    @can('adoptantes.index')
+                        <a href="/adoptantes" class="btn btn-secondary" tabindex="5">Regresar</a>
+                    @endcan
                 </div>
 
                 <div>

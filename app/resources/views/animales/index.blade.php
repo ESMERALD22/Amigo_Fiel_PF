@@ -125,7 +125,8 @@
                                     <form action="{{ route('animales.destroy', $animal->id) }} " method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Realmente desea eliminar?')">Borrar</button>
+                                        <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('¿Realmente desea eliminar?')">Borrar</button>
                                     </form>
                                 @endcan
                             </td>

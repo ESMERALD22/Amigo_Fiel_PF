@@ -8,18 +8,20 @@ use App\Models\IngresoAnimal;
 use App\Http\Requests\StoreIngresoAnimalRequest;
 use App\Http\Requests\UpdateIngresoAnimalRequest;
 use App\Models\Hogar;
+use Illuminate\Database\QueryException;
 
 class IngresoAnimalController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('can:ingresoAnimales.index')->only('index');
-        $this->middleware('can:ingresoAnimales.create')->only('create','store');
-        $this->middleware('can:ingresoAnimales.update')->only('edit','update');
+        $this->middleware('can:ingresoAnimales.create')->only('create', 'store');
+        $this->middleware('can:ingresoAnimales.edit')->only('edit', 'update');
         $this->middleware('can:ingresoAnimales.destroy')->only('destroy');
-
+        $this->middleware('can:ingresoAnimales.show')->only('show');
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -50,48 +52,72 @@ class IngresoAnimalController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         request()->validate(IngresoAnimal::$rules);
-        $ingreso = IngresoAnimal::create($request->all());
+        try {
 
-        return redirect()->route('ingresoAnimales.index')->with('success', 'Ingreso Creado created successfully.');
-
+            $ingreso = IngresoAnimal::create($request->all());
+            return redirect()->route('ingresoAnimales.index')->with('success', 'Registro de ingreso de animal correcto');
+        } catch (QueryException $ex) {
+            return redirect()->route('ingresoAnimales.index')->with('error', 'Error, no se registro el ingreso de animal');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(IngresoAnimal $ingresoAnimal)
+    public function show($id)
     {
-        //
+        $ingreso = IngresoAnimal::find($id);
+        //capturar datos
+        $hogar = Hogar::find($ingreso->Hogar->id);
+        $animal = Animal::find($ingreso->Animal->id);
+
+        return view("ingresoAnimales.show", compact('hogar', 'animal', 'ingreso'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(IngresoAnimal $ingresoAnimal)
+    public function edit($id)
     {
-        //
+        $ingreso = IngresoAnimal::find($id);
+        //capturar datos
+        $hogar = Hogar::find($ingreso->Hogar->id);
+        $animal = Animal::find($ingreso->Animal->id);
+
+        return view("ingresoAnimales.edit", compact('hogar', 'animal', 'ingreso'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIngresoAnimalRequest $request, IngresoAnimal $ingresoAnimal)
+    public function update(Request $request, $id)
     {
-        //
+        $ingreso = IngresoAnimal::find($id);
+        request()->validate(IngresoAnimal::$rules);
+
+        try {
+            $ingreso->update($request->all());
+            return redirect()->route('ingresoAnimales.index')
+                ->with('success', 'Ingreso de animales actualizado correctamente');
+        } catch (QueryException $ex) {
+            return redirect()->route('ingresoAnimales.index')->with('error', 'Error, no se actualizo el ingreso de animal');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
-        
-        $registro = IngresoAnimal::find($id)->delete();
-
-        return redirect()->route('ingresoAnimales.index')
-            ->with('success', 'Departamento deleted successfully');
-   
+        try {
+            $registro = IngresoAnimal::find($id)->delete();
+            return redirect()->route('ingresoAnimales.index')
+                ->with('success', 'Registro eliminado correctamente');
+        } catch (QueryException $ex) {
+            return redirect()->route('ingresoAnimales.index')
+                ->with('error', 'Error, no se elimino el registro');
+        }
     }
 }

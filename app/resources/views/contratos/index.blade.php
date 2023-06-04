@@ -28,8 +28,8 @@
             <table id="contratosT" class="table  table-striped mt-4">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Número de contrato</th>
-                        <th scope="col">Fecha de contrato</th>
+                        <th scope="col">No. </th>
+                        <th scope="col">Fecha </th>
                         <th scope="col">Mascota</th>
                         <th scope="col">Adoptante</th>
                         <th scope="col">Estado</th>
@@ -40,20 +40,39 @@
                 <tbody>
                     @foreach ($contratos as $contrato)
                         <tr>
-                            <td>{{ $contrato->idContrato }}</td>
+                            <td>{{ $contrato->id }}</td>
                             <td>{{ $contrato->fechaSalida }}</td>
                             <td>{{ $contrato->Animal1->nombre }}</td>
                             <td>{{ $contrato->Adoptante1->nombre }} {{ $contrato->Adoptante1->apellido }}</td>
                             <td>{{ $contrato->estado }}</td>
 
                             <td>
-                                @can('contrato.show')
-                                    <a href="{{ route('contratos.show', $contrato->id) }} " class="btn btn-info">VER
-                                        CONTRATO</a>
-                                @endcan
+                                <div class="dropbtn">
+                                    <a class="btn btn-info dropdown-toggle" href="#" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Más opciones
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        @can('contratos.show')
+                                            <div><a href="{{ route('contratos.show', $contrato->id) }} "
+                                                    class="dropdown-item">Ver contrato</a></div>
+                                        @endcan
+                                        @can('contratos.edit')
+                                            <div><a href="{{ route('contratos.edit', $contrato->id) }} "
+                                                    class="dropdown-item">Editar contrato</a></div>
+                                        @endcan
+
+
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                <a href=" " class="btn btn-success">Imprimir</a>
+                                @can('contratos.show')
+                                    <a href="print/{{ $contrato->id }}" class="btn btn-success">Imprimir</a>
+                                @endcan
+
                             </td>
                         </tr>
                     @endforeach

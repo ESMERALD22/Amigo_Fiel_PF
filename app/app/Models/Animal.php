@@ -15,7 +15,6 @@ class Animal extends Model
 		'raza' => 'required',
 		'nombreRaza' => 'required',
 		'nombre' => 'required',
-		'fechaNacimiento' => 'required',
 		'edad' => 'required',
 		'descripcion' => 'required',
 		'foto' => 'required',
@@ -28,7 +27,7 @@ class Animal extends Model
     
     //relacion uno a uno de ingreso animal con animal
     public function IngresoAnimal(){
-        return $this->hasOne('App\Models\IngresoAnimal','idAnimal','id');
+        return $this->hasMany('App\Models\IngresoAnimal','idAnimal','id');
 
     }
      //relacion uno a uno de contrato con animal

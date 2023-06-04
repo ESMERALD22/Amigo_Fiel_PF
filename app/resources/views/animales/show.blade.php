@@ -11,11 +11,15 @@
             </div>
 
 
-            <a href="/animales" class="btn btn-secondary" tabindex="5">Regresar</a>
+
+            @can('animales.index')
+                <a href="/animales" class="btn btn-secondary" tabindex="5">Regresar</a>
+            @endcan
 
             @can('registrosMedicos.index')
                 <a href="/registros/{{ $animal->id }}" class="btn btn-info">Ver registros médicos</a>
             @endcan
+            
             @can('ingresoAnimales.index')
                 <a href="/hogaresA/{{ $animal->id }}" class="btn btn-info">Ver hogares temporal</a>
             @endcan

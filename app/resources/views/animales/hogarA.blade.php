@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>
-        <center> HOGARES TEMPORALES</center>
+        <center> HOGARES TEMPORALES DE: {{ $animal->nombre }}</center>
     </h1>
 
     @can('animales.show')
@@ -24,7 +24,8 @@
                         <th scope="col">Animal</th>
                         <th scope="col">Hogar temporal </th>
                         <th scope="col">Procedencia</th>
-                        <th scope="col">Detalles</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +36,38 @@
                             <td>{{ $ingreso->Animal->nombre }}</td>
                             <td>{{ $ingreso->Hogar->nombreEncargado }}</td>
                             <td>{{ $ingreso->procedencia }}</td>
-                            <td>{{ $ingreso->detalle }}</td>
+
+                            <td>
+                                <div class="dropbtn">
+                                    <a class="btn btn-info dropdown-toggle" href="#" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Más opciones
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                        @can('ingresoAnimales.show')
+                                            <div><a href="/vistaHA1/{{ $ingreso->id }}" class="dropdown-item">Información</a>
+                                            </div>
+                                        @endcan
+                                        @can('ingresoAnimales.edit')
+                                            <div><a href="{{ route('ingresoAnimales.edit', $ingreso->id) }}  "
+                                                    class="dropdown-item">Edit</a></div>
+                                        @endcan
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td>
+                                @can('ingresoAnimales.destroy')
+                                    <form action="{{ route('ingresoAnimales.destroy', $ingreso->id) }} " method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                    </form>
+                                @endcan
+                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>

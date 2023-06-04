@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('adoptantes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre',100);
-            $table->string('apellido',100);
+            $table->string('nombre',200);
+            $table->string('apellido',200);
             $table->string('dpi',13);
             $table->string('telefono1',8);
             $table->string('telefono2',8)->nullable();
             $table->string('correo',50);
-            $table->string('direccion',100);
+            $table->string('direccion',200);
             $table->text('detalles');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

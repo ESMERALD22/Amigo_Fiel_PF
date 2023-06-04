@@ -7,18 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\RegistroMedico;
 use App\Http\Requests\StoreRegistroMedicoRequest;
 use App\Http\Requests\UpdateRegistroMedicoRequest;
+use Illuminate\Database\QueryException;
 
 class RegistroMedicoController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
 
         $this->middleware('can:registrosMedicos.index')->only('index');
-        $this->middleware('can:registrosMedicos.create')->only('create','store');
-        $this->middleware('can:registrosMedicos.update')->only('edit','update');
+        $this->middleware('can:registrosMedicos.create')->only('create', 'store');
+        $this->middleware('can:registrosMedicos.edit')->only('edit', 'update');
         $this->middleware('can:registrosMedicos.destroy')->only('destroy');
+        $this->middleware('can:ingresoAnimales.show')->only('show');
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -26,8 +29,7 @@ class RegistroMedicoController extends Controller
     {
         $registros = RegistroMedico::all();
 
-        return view("registrosMedicos.index", compact('registros')); 
-        
+        return view("registrosMedicos.index", compact('registros'));
     }
 
     /**
@@ -38,8 +40,7 @@ class RegistroMedicoController extends Controller
         $id = $request->input('id');
         $animal = Animal::find($id);
 
-        return view("registrosMedicos.create", compact( 'animal'));
-
+        return view("registrosMedicos.create", compact('animal'));
     }
 
     /**
@@ -48,18 +49,21 @@ class RegistroMedicoController extends Controller
     public function store(Request $request)
     {
         request()->validate(RegistroMedico::$rules);
-        $registro = RegistroMedico::create($request->all());
-
-        return redirect()->route('registrosMedicos.index')->with('success', 'Salio created successfully.');
-
+        try {
+            $registro = RegistroMedico::create($request->all());
+            return redirect()->route('registrosMedicos.index')->with('success', 'Registro médico ingresado.');
+        } catch (QueryException $ex) {
+            return redirect()->route('registrosMedicos.index')->with('error', 'Error, no se ingresó registro médico');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(RegistroMedico $registroMedico)
+    public function show($id)
     {
-        //
+        $registro = RegistroMedico::find($id);
+        return view("registrosMedicos.show", compact('registro')); //devuelve form 
     }
 
     /**
@@ -78,11 +82,14 @@ class RegistroMedicoController extends Controller
     {
         $registro = RegistroMedico::find($id);
         request()->validate(RegistroMedico::$rules);
-        $registro->update($request->all());
-
-        return redirect()->route('registrosMedicos.index')
-            ->with('success', 'Adoptante updated successfully');
-    
+        try {
+            $registro->update($request->all());
+            return redirect()->route('registrosMedicos.index')
+                ->with('success', 'Registro médico actualizado');
+        } catch (QueryException $ex) {
+            return redirect()->route('registrosMedicos.index')
+                ->with('error', 'Error, no se actualizó el registro médico');
+        }
     }
 
     /**
@@ -90,10 +97,13 @@ class RegistroMedicoController extends Controller
      */
     public function destroy($id)
     {
-        $registro = RegistroMedico::find($id)->delete();
-
-        return redirect()->route('registrosMedicos.index')
-            ->with('success', 'Departamento deleted successfully');
-   
+        try {
+            $registro = RegistroMedico::find($id)->delete();
+            return redirect()->route('registrosMedicos.index')
+                ->with('success', 'Registro médico eliminado');
+        } catch (QueryException $ex) {
+            return redirect()->route('registrosMedicos.index')
+                ->with('error', 'Error, no se eliminó el registro médico.');
+        }
     }
 }

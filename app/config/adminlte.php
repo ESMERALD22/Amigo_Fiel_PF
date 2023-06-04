@@ -291,6 +291,7 @@ return [
 
     'menu' => [
         // Navbar items:
+
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
@@ -323,6 +324,14 @@ return [
         ],
 
         ['header' => 'MENÚ'],
+        [
+            'text' => 'Especies',
+            'url'  => '/tipoAnimal',
+            'icon_color' => 'yellow',
+            'icon' => 'fas fa-fw fa-folder-open',
+            'can' => 'tipoAnimal.index'
+
+        ],        
         [
             'text' => 'Hogares Temporales',
             'url'  => '/hogares',

@@ -48,7 +48,7 @@ class AdoptanteController extends Controller
             $adoptante = Adoptante::create($request->all());
             return redirect()->route('adoptantes.index')->with('success', 'Adoptante registrado correctamente');
         } catch (QueryException $ex) {
-            return redirect()->route('adoptantes.index')->with('error', 'Error');
+            return redirect()->route('adoptantes.index')->with('error', 'Error, no se registro el adoptante');
         }
     }
 
@@ -83,7 +83,7 @@ class AdoptanteController extends Controller
             return redirect()->route('adoptantes.index')
                 ->with('success', 'Adoptante actualizado correctamente');
         } catch (QueryException $ex) {
-            return redirect()->route('adoptantes.index')->with('error', 'Error');
+            return redirect()->route('adoptantes.index')->with('error', 'Error, no se actualizó el adoptante');
         }
     }
 
@@ -98,7 +98,7 @@ class AdoptanteController extends Controller
             return redirect()->route('adoptantes.index')
                 ->with('success', 'Adoptante eliminado correctamente');
         } catch (QueryException $ex) {
-            return redirect()->route('adoptantes.index')->with('error', 'Error');
+            return redirect()->route('adoptantes.index')->with('error', 'Error, no se elimino el adoptante');
         }
     }
 }

@@ -59,8 +59,8 @@
 
                     <div>
                         <label for="" class="formbold-form-label">Nombre de la raza :</label>
-                        <input id="nombreRaza" name="nombreRaza" type="text" class="form-control" tabindex="3"
-                            required value={{ old('nombreRaza') }}>
+                        <input id="nombreRaza" name="nombreRaza" type="text" class="form-control" tabindex="3" required
+                            value={{ old('nombreRaza') }}>
                         @if ($errors->has('nombreRaza'))
                             <p class="alert alert-danger">Ingrese nombre por favor </p>
                         @endif
@@ -69,7 +69,8 @@
 
                 <div class="formbold-mb-3">
                     <label for="" class="formbold-form-label">Nombre del animal :</label>
-                    <input id="nombre" name="nombre" type="text" class="form-control" tabindex="3" required value={{ old('nombre') }}>
+                    <input id="nombre" name="nombre" type="text" class="form-control" tabindex="3" required
+                        value={{ old('nombre') }}>
                     @if ($errors->has('nombre'))
                         <p class="alert alert-danger">Ingrese nombre por favor </p>
                     @endif
@@ -87,7 +88,8 @@
 
                     <div>
                         <label for="" class="formbold-form-label">Edad :</label>
-                        <input id="edad" name="edad" type="text" class="form-control" tabindex="3" required value={{ old('edad') }}>
+                        <input id="edad" name="edad" type="text" class="form-control" tabindex="3" required
+                            value={{ old('edad') }}>
                         @if ($errors->has('edad'))
                             <p class="alert alert-danger">Ingrese nombre por favor </p>
                         @endif
@@ -96,7 +98,8 @@
 
                 <div class="formbold-mb-3">
                     <label for="" class="formbold-form-label">Descripción :</label>
-                    <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3" required value={{ old('descripcion') }}>
+                    <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3" required
+                        value={{ old('descripcion') }}>
                     @if ($errors->has('descripcion'))
                         <p class="alert alert-danger">Ingrese nombre por favor </p>
                     @endif
@@ -109,15 +112,18 @@
 
                 <div class="form-group">
                     <label for="" class="formbold-form-label">Fotografía :</label>
-                    <input type="file" id="foto" name="foto" class="hidden" required >
+                    <input type="file" id="foto" name="foto" class="hidden" required>
                     @if ($errors->has('foto'))
                         <p class="alert alert-danger">Ingrese nombre por favor </p>
                     @endif
                 </div>
 
-                <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>
-                <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
-
+                @can('animales.index')
+                    <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>
+                @endcan
+                @can('animales.create')
+                    <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+                @endcan
                 <div><br />
                 </div>
 

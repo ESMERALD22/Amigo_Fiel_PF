@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('hogares', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombreEncargado',100);
+            $table->string('nombreEncargado',200);
             $table->string('telefono1',8);
             $table->string('telefono2',8)->nullable();
-            $table->string('direccion',100);
+            $table->string('direccion',200);
             $table->text('descripcionLugar');
             $table->text('animalesPropios');
             $table->text('miembrosFam');

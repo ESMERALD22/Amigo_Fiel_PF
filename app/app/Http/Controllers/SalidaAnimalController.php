@@ -7,19 +7,21 @@ use App\Models\SalidaAnimal;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSalidaAnimalRequest;
 use App\Http\Requests\UpdateSalidaAnimalRequest;
+use Illuminate\Database\QueryException;
 
 class SalidaAnimalController extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('can:salidaAnimales.index')->only('index');
-        $this->middleware('can:salidaAnimales.create')->only('create','store');
-        $this->middleware('can:salidaAnimales.update')->only('edit','update');
+        $this->middleware('can:salidaAnimales.create')->only('create', 'store');
+        $this->middleware('can:salidaAnimales.edit')->only('edit', 'update');
         $this->middleware('can:salidaAnimales.destroy')->only('destroy');
-
+        $this->middleware('can:salidaAnimales.show')->only('show');
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -27,7 +29,6 @@ class SalidaAnimalController extends Controller
     {
         $salidas = SalidaAnimal::all();
         return view("salidaAnimales.index", compact('salidas'));
-
     }
 
     /**
@@ -39,7 +40,7 @@ class SalidaAnimalController extends Controller
         $id = $request->input('id');
         $animal = Animal::find($id);
 
-        return view("salidaAnimales.create", compact( 'animal'));
+        return view("salidaAnimales.create", compact('animal'));
     }
 
     /**
@@ -48,27 +49,32 @@ class SalidaAnimalController extends Controller
     public function store(Request $request)
     {
         request()->validate(SalidaAnimal::$rules);
-        $salida = SalidaAnimal::create($request->all());
-
-        return redirect()->route('salidaAnimales.index')->with('success', 'Salio created successfully.');
+        try {
+            $salida = SalidaAnimal::create($request->all());
+            return redirect()->route('salidaAnimales.index')->with('success', 'Salida registrada correctamente.');
+        } catch (QueryException $ex) {
+            return redirect()->route('salidaAnimales.index')->with('error', 'Error, no se registro la salida.');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(SalidaAnimal $salidaAnimal)
+    public function show($id)
     {
-        //
+        $salida = SalidaAnimal::find($id);
+        $tiposSalida = ['Adopción', 'Muerte', 'Otro', 'Retorno a su hogar'];
+        return view("salidaAnimales.show", compact('salida', 'tiposSalida')); //devuelve form 
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $salida = SalidaAnimal::find($id);
-        $tiposSalida = ['Adopción','Muerte', 'Otro','Retorno a su hogar'];
-        return view("salidaAnimales.edit", compact('salida','tiposSalida')); //devuelve form 
+        $tiposSalida = ['Adopción', 'Muerte', 'Otro', 'Retorno a su hogar'];
+        return view("salidaAnimales.edit", compact('salida', 'tiposSalida')); //devuelve form 
 
     }
 
@@ -79,10 +85,14 @@ class SalidaAnimalController extends Controller
     {
         $salida = SalidaAnimal::find($id);
         request()->validate(SalidaAnimal::$rules);
-        $salida->update($request->all());
-
-        return redirect()->route('salidaAnimales.index')
-            ->with('success', 'Adoptante updated successfully');
+        try {
+            $salida->update($request->all());
+            return redirect()->route('salidaAnimales.index')
+                ->with('success', 'Registro de salida actualizado');
+        } catch (QueryException $ex) {
+            return redirect()->route('salidaAnimales.index')
+                ->with('error', 'Error, no se actualizo la salida');
+        }
     }
 
     /**
@@ -90,10 +100,14 @@ class SalidaAnimalController extends Controller
      */
     public function destroy($id)
     {
-        $salida = SalidaAnimal::find($id)->delete();
-
-        return redirect()->route('salidaAnimales.index')
-            ->with('success', 'Departamento deleted successfully');
+        try{
+            $salida = SalidaAnimal::find($id)->delete();
+            return redirect()->route('salidaAnimales.index')
+                ->with('success', 'Registro de salida eliminado');
+        }catch(QueryException $ex){
+            return redirect()->route('salidaAnimales.index')
+                ->with('error', 'Error, no se eliminó registro de salida');
+        }
 
     }
 }

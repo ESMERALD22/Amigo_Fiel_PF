@@ -48,7 +48,7 @@
                     @foreach ($adoptantes as $adoptante)
                         <tr>
                             <td>{{ $adoptante->id }}</td>
-                            <td>{{ $adoptante->nombre }} {{$adoptante->apellido }}</td>
+                            <td>{{ $adoptante->nombre }} {{ $adoptante->apellido }}</td>
 
                             <td>{{ $adoptante->telefono1 }}</td>
                             <td>{{ $adoptante->telefono2 }}</td>
@@ -80,15 +80,14 @@
                             <td>
 
                                 @can('adoptantes.destroy')
-                                <div>
-                                    <form action="{{ route('adoptantes.destroy', $adoptante->id) }} "
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Borrar</button>
-                                    </form>
-                                </div>
-                            @endcan
+                                    <div>
+                                        <form action="{{ route('adoptantes.destroy', $adoptante->id) }} " method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                        </form>
+                                    </div>
+                                @endcan
 
                             </td>
 

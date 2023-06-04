@@ -60,6 +60,7 @@ Route::resource('salidaAnimales', SalidaAnimalController::class);
 Route::resource('adoptantes', AdoptanteController::class);
 
 Route::resource('contratos', ContratoController::class);
+Route::resource('tipoAnimal', TipoAnimalController::class);
 
 Route::get('vista/{id}', [VistaController::class, 'ver']);
 Route::get('hogar/{id}', [VistaController::class, 'elegirHogar']);
@@ -67,6 +68,10 @@ Route::get('registros/{id}', [VistaController::class, 'infoRegMed']);
 Route::get('hogaresA/{id}', [VistaController::class, 'infoHogares']);
 Route::get('contratoA/{id}', [VistaController::class, 'infoContrato']);
 Route::get('catalogo', [CatalogoController::class, 'catalogo']);
+Route::get('print/{id}', [VistaController::class, 'imprimir']);
+Route::get('vistaHA1/{id}', [VistaController::class, 'vistaHA']);
+Route::get('showRA/{id}', [VistaController::class, 'showRA']);
+
 
 
 Route::resource('users', UserController::class);

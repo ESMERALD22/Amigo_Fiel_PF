@@ -45,13 +45,13 @@
                 <div class="formbold-input-flex">
                     <div>
                         <label for="" class="formbold-form-label"</label>
-                        <select name="raza">
-                            @if ($animal->raza == 'Raza')
-                                <option value="Raza" selected>Raza</option>
-                            @endif
-                            <option value="Raza">Raza</option>
-                            <option value="Mestizo">Mestizo</option>
-                        </select>
+                            <select name="raza">
+                                @if ($animal->raza == 'Raza')
+                                    <option value="Raza" selected>Raza</option>
+                                @endif
+                                <option value="Raza">Raza</option>
+                                <option value="Mestizo">Mestizo</option>
+                            </select>
                     </div>
                     <div>
                         <label for="" class="formbold-form-label">Nombre de la raza :</label>
@@ -95,9 +95,12 @@
                     <label for="" class="formbold-form-label">Fotografía :</label>
                     <input type="file" id="foto" name="foto" class="hidden" />
                 </div>
-                <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>
-                <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
-
+                @can('animales.index')
+                    <a href="/animales" class="btn btn-secondary" tabindex="5">Cancelar</a>
+                @endcan
+                @can('animales.edit')
+                    <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+                @endcan
             </form>
         </div>
     </div>

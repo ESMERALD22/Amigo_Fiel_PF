@@ -46,7 +46,7 @@
                         <input id="telefono2" name="telefono2" type="number" class="form-control" tabindex="3"
                             value="{{ $hogar->telefono2 }}" required>
                         @if ($errors->has('telefono2'))
-                            <p class="alert alert-danger">Ingrese un número de teléfono correcto  </p>
+                            <p class="alert alert-danger">Ingrese un número de teléfono correcto </p>
                         @endif
                     </div>
                 </div>
@@ -103,13 +103,17 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-2 col-xs-6">
-                        <a href="/hogares" class="btn  btn-primary " tabindex="4"> Cancelar</a>
-                    </div>
-                    <div class="col-md-2 col-xs-6">
-                        <button type="submit" class="btn btn-success "><i class="fa fa-save" tabindex="4">
-                                Guardar</i></a>
-                    </div>
+                    @can('hogares.index')
+                        <div class="col-md-2 col-xs-6">
+                            <a href="/hogares" class="btn  btn-primary " tabindex="4"> Cancelar</a>
+                        </div>
+                    @endcan
+                    @can('hogares.edit')
+                        <div class="col-md-2 col-xs-6">
+                            <button type="submit" class="btn btn-success "><i class="fa fa-save" tabindex="4">
+                                    Guardar</i></a>
+                        </div>
+                    @endcan
                 </div>
 
                 <div class="mb-3">

@@ -5,12 +5,14 @@
 @endsection
 
 @section('content')
-    <h1><center>REGISTROS MÉDICOS DE: {{ $animal->nombre }}</center></h1>
+    <h1>
+        <center>REGISTROS MÉDICOS DE: {{ $animal->nombre }}</center>
+    </h1>
 
     @can('animales.show')
         <div><a href="{{ route('animales.show', $animal->id) }} " class="btn btn-secondary">Regresar</a></div>
     @endcan
-    
+
     <div class="card">
         <div class="card-body">
 
@@ -33,9 +35,28 @@
                             <td>{{ $registro->tratamiento }}</td>
                             <td>{{ $registro->descripcion }}</td>
                             <td>
-                                @can('registrosMedicos.edit')
-                                    <a href="{{ route('registrosMedicos.edit', $registro->id) }} " class="btn btn-info">Editar</a>
-                                @endcan
+
+                                <div class="dropbtn">
+                                    <a class="btn btn-info dropdown-toggle" href="#" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Más opciones
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                        @can('registrosMedicos.show')
+                                            <div><a href="/showRA/{{ $registro->id }}" class="dropdown-item">Información</a>
+                                            </div>
+                                        @endcan
+
+                                        @can('registrosMedicos.edit')
+                                            <div><a href="{{ route('registrosMedicos.edit', $registro->id) }} "
+                                                    class="dropdown-item">Editar</a></div>
+                                        @endcan
+
+                                    </div>
+                                </div>
+
                             </td>
                             <td>
                                 @can('registrosMedicos.destroy')
@@ -46,7 +67,7 @@
                                     </form>
                                 @endcan
                             </td>
-                                </tr>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

@@ -28,7 +28,7 @@
 
                     <div class="formbold-mb-3">
                         <label for="" class="formbold-form-label">Teléfono 2 :</label>
-                        <input id="telefono2" name="telefono2" type="text" class="formbold-form-input"tabindex="3"
+                        <input id="telefono2" name="telefono2" type="text" class="formbold-form-input" tabindex="3"
                             value="{{ $hogar->telefono2 }}" readonly>
                     </div>
                 </div>
@@ -63,7 +63,9 @@
                     <input id="tiempoDisponible" name="tiempoDisponible" type="text" class="formbold-form-input"
                         tabindex="3" value="{{ $hogar->tiempoDisponible }}" readonly>
                 </div>
-                <a href="/hogares" class="btn-lg btn-primary" tabindex="5">Regresar</a>
+                @can('hogares.index')
+                    <a href="/hogares" class="btn-lg btn-primary" tabindex="5">Regresar</a>
+                @endcan
             </form>
         </div>
     </div>
