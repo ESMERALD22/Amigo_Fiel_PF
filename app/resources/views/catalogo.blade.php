@@ -2,10 +2,13 @@
 
 @section('content')
   
-        <header class="masthead bg-primary text-white text-center">
+        <header class="masthead bg-amf text-white text-center">
+            
+            <img class="" src="{{ asset('vendor/adminlte/dist/img/home.png') }}" alt="..." />
+            <br><br><br><br><br>
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="{{ asset('vendor/adminlte/dist/img/logo.jpg') }}" alt="..." />
+                
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">Animales en adopción</h1>
                 <!-- Icon Divider-->
@@ -53,11 +56,13 @@
                                     <img class="custom-img" src="{{ asset('uploads/animales/' . $animal->foto) }}" alt="Image">
                                     <h5 class="card-title">{{ $animal->nombre }}</h5>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <p class="card-text">{{ $animal->TipoAnimal->tipo }}</p>
-                                            <p class="card-text">{{ $animal->sexo }}</p>
-                                        </div>
-                                        <small class="card-text">{{ $animal->raza }}</small>
+                                        
+                                        
+                                        <ul class="list-group list-group-flush ">
+                                            <li class="list-group-item">{{ $animal->TipoAnimal->tipo }}</li>
+                                            <li class="list-group-item">{{ $animal->sexo }}</li>
+                                            <li class="list-group-item">{{ $animal->raza }}</li>
+                                          </ul>
                                     </div>
                                 </div>
                             </div>
