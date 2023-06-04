@@ -22,7 +22,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Fecha de salida :</label>
                     <input id="fechaSalida" name="fechaSalida" type="date" class="form-control" tabindex="3" required
-                        value={{ old('fechaSalida') }}>
+                        value="{{ old('fechaSalida') }}">
 
                     @if ($errors->has('fechaSalida'))
                         <p class="alert alert-danger">Ingrese fecha </p>
@@ -45,7 +45,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Detalles :</label>
                     <input id="detalle" name="detalle" type="text" class="form-control" tabindex="3" required
-                        value={{ old('detalle') }}>
+                        value="{{ old('detalle') }}">
 
                     @if ($errors->has('detalle'))
                         <p class="alert alert-danger">Ingrese detalle </p>
@@ -59,38 +59,34 @@
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Nombre:</label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->nombre }}>
+                        value="{{ $animal->nombre }}">
                 </div>
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Especie: </label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->TipoAnimal->tipo }}>
+                        value="{{ $animal->TipoAnimal->tipo }}">
                 </div>
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Sexo: </label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->sexo }}>
+                        value="{{ $animal->sexo }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Raza: </label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->raza }}>
+                        value="{{ $animal->raza }}">
                 </div>
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Nombre de la raza:
                         <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                            value={{ $animal->nombreRaza }}>
+                            value="{{ $animal->nombreRaza }}">
                 </div>
-                <div class="mb-3">
-                    <label for="" class="formbold-form-label"> Procedencia: </label>
-                    <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->procedencia }}>
-                </div>
+               
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Fecha de nacimiento: </label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->fechaNacimiento }}>
+                        value="{{ $animal->fechaNacimiento }}">
                 </div>
 
                 <!-- Dejar estos input invisible solo se necesita para mandar ids -->

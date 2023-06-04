@@ -1,6 +1,12 @@
 @extends('layouts.plantillabase')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <h6>Error en campos, por favor verifique la información:</h6>
+        </div>
+    @endif
+
     <h1>EDITAR UN ROL</h1>
 
     <form action="{{ route('users.update', $usuario->id) }}" method="POST" enctype="multipart/form-data">
@@ -12,6 +18,9 @@
             <label for="" class="form-label">USUARIO :</label>
             <input id="name" name="name" type="text" class="form-control" tabindex="3"
                 value="{{ $usuario->name }}">
+            @if ($errors->has('name'))
+                <p class="alert alert-danger">Ingrese nombre</p>
+            @endif
         </div>
         <div class="mb-3">
             <label for="" class="form-label">ROLES :</label>
@@ -24,6 +33,9 @@
                     <option value="{{ $rol->id }}"> {{ $rol->name }}</option>}
                 @endforeach
             </select>
+            @if ($errors->has('rol'))
+                <p class="alert alert-danger">Seleccione rol </p>
+            @endif
         </div>
 
 

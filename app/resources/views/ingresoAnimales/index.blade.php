@@ -37,7 +37,6 @@
                             <th scope="col">Animal</th>
                             <th scope="col">Hogar temporal </th>
                             <th scope="col">Procedencia</th>
-                            <th scope="col">Detalles</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
@@ -50,7 +49,6 @@
                                 <td>{{ $ingreso->Animal->nombre }}</td>
                                 <td>{{ $ingreso->Hogar->nombreEncargado }}</td>
                                 <td>{{ $ingreso->procedencia }}</td>
-                                <td>{{ $ingreso->detalle }}</td>
                                 <td>
                                     <div class="dropbtn">
                                         <a class="btn btn-info dropdown-toggle" href="#" role="button"

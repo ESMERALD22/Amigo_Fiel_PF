@@ -22,7 +22,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Fecha :</label>
                     <input id="fecha" name="fecha" type="date" class="form-control" tabindex="3" required
-                        value={{ old('fecha') }}>
+                        value="{{ old('fecha') }}">
                     @if ($errors->has('fecha'))
                         <p class="alert alert-danger">Ingrese fecha </p>
                     @endif
@@ -31,7 +31,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Tratamiento aplicado:</label>
                     <input id="tratamiento" name="tratamiento" type="text" class="form-control" tabindex="3" required
-                        value={{ old('tratamiento') }}>
+                        value="{{ old('tratamiento') }}">
                     @if ($errors->has('tratamiento'))
                         <p class="alert alert-danger">Ingrese tratamiento </p>
                     @endif
@@ -40,7 +40,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Descripción :</label>
                     <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3" required
-                        value={{ old('descripcion') }}>
+                        value="{{ old('descripcion') }}">
                     @if ($errors->has('descripcion'))
                         <p class="alert alert-danger">Ingrese descripcion </p>
                     @endif
@@ -52,7 +52,7 @@
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Nombre:</label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->nombre }}>
+                        value="{{ $animal->nombre }}">
                 </div>
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Especie: </label>
@@ -62,28 +62,28 @@
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Sexo: </label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->sexo }}>
+                        value="{{ $animal->sexo }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Raza: </label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->raza }}>
+                        value="{{ $animal->raza }}">
                 </div>
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Nombre de la raza:
                         <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                            value={{ $animal->nombreRaza }}>
+                            value="{{ $animal->nombreRaza }}">
                 </div>
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Procedencia: </label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->procedencia }}>
+                        value="{{ $animal->procedencia }}">
                 </div>
                 <div class="mb-3">
                     <label for="" class="formbold-form-label"> Fecha de nacimiento: </label>
                     <input id="gohar2" name="hogar2" type="text" class="form-control" readonly
-                        value={{ $animal->fechaNacimiento }}>
+                        value="{{ $animal->fechaNacimiento }}">
                 </div>
 
 

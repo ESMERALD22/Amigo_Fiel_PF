@@ -24,7 +24,7 @@
                 <div class="formbold-mb-3">
                     <label for="" class="formbold-form-label">Nombre del propietario :</label>
                     <input id="nombreEncargado" name="nombreEncargado" type="text" class="form-control" tabindex="3"
-                        required value={{ old('nombreEncargado') }}>
+                        required value="{{ old('nombreEncargado') }}">
                     @if ($errors->has('nombreEncargado'))
                         <p class="alert alert-danger">Ingrese nombre por favor </p>
                     @endif
@@ -34,7 +34,7 @@
                     <div>
                         <label for="" class="formbold-form-label">Teléfono 1 :</label>
                         <input id="telefono1" name="telefono1" type="number" class="form-control" tabindex="3" required
-                            value={{ old('telefono1') }}>
+                            value="{{ old('telefono1') }}">
                         @if ($errors->has('telefono1'))
                             <p class="alert alert-danger">Ingrese un número de teléfono válido </p>
                         @endif
@@ -43,7 +43,7 @@
                     <div>
                         <label for="" class="formbold-form-label">Teléfono 2 :</label>
                         <input id="telefono2" name="telefono2" type="number" class="form-control" tabindex="3" required
-                            value={{ old('telefono2') }}>
+                            value="{{ old('telefono2') }}">
                         @if ($errors->has('telefono2'))
                             <p class="alert alert-danger">Ingrese un número de teléfono válido </p>
                         @endif
@@ -53,7 +53,7 @@
                 <div class="formbold-mb-3">
                     <label for="" class="formbold-form-label">Dirección :</label>
                     <input id="direccion" name="direccion" type="text" class="form-control" tabindex="3" required
-                        value={{ old('direccion') }}>
+                        value="{{ old('direccion') }}">
                     @if ($errors->has('direccion'))
                         <p class="alert alert-danger">Ingrese dirección</p>
                     @endif
@@ -62,8 +62,8 @@
                 <div class="formbold-mb-3">
                     <label for="" class="formbold-form-label">Descripción del lugar :</label>
                     <input id="descripcionLugar" name="descripcionLugar" type="text" class="form-control" tabindex="3"
-                        required value={{ old('descripcionLugar') }}>
-                    @if ($errors->has('descripcion'))
+                        required value="{{ old('descripcionLugar') }}">
+                    @if ($errors->has('descripcionLugar'))
                         <p class="alert alert-danger">Llene este campo </p>
                     @endif
                 </div>
@@ -71,7 +71,7 @@
                 <div class="formbold-mb-3">
                     <label for="" class="formbold-form-label">Animales propios :</label>
                     <input id="animalesPropios" name="animalesPropios" type="text" class="form-control" tabindex="3"
-                        required value={{ old('animalesPropios') }}>
+                        required value="{{ old('animalesPropios') }}">
                     @if ($errors->has('animalesPropios'))
                         <p class="alert alert-danger">Llene este campo </p>
                     @endif
@@ -80,7 +80,7 @@
                 <div class="formbold-mb-3">
                     <label for="" class="formbold-form-label">Miembros de la familia :</label>
                     <input id="miembrosFam" name="miembrosFam" type="text" class="form-control" tabindex="3" required
-                        value={{ old('miembrosFam') }}>
+                        value="{{ old('miembrosFam') }}">
                     @if ($errors->has('miembrosFam'))
                         <p class="alert alert-danger">Llene este campo </p>
                     @endif
@@ -90,7 +90,7 @@
                 <div class="formbold-mb-3">
                     <label for="" class="formbold-form-label">Tiempo disponible :</label>
                     <input id="tiempoDisponible" name="tiempoDisponible" type="text" class="form-control" tabindex="3"
-                        required value={{ old('tiempoDisponible') }}>
+                        required value="{{ old('tiempoDisponible') }}">
                     @if ($errors->has('tiempoDisponible'))
                         <p class="alert alert-danger">Llene este campo </p>
                     @endif

@@ -1,6 +1,12 @@
 @extends('layouts.plantillabase')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <h6>Error en campos, por favor verifique la información.</h6>
+        </div>
+    @endif
+
     <div class="formbold-main-wrapper">
         <div class="formbold-form-wrapper">
 
@@ -24,6 +30,9 @@
                             <option value="Hembra">Hembra</option>
                             <option value="Macho">Macho</option>
                         </select>
+                        @if ($errors->has('sexo'))
+                            <p class="alert alert-danger">Seleccione sexo </p>
+                        @endif
                     </div>
 
                     <div class="mb-3">
@@ -39,6 +48,9 @@
                                 }
                             @endforeach
                         </select>
+                        @if ($errors->has('idTipoAnimal'))
+                            <p class="alert alert-danger">Seleccione especie </p>
+                        @endif
                     </div>
                 </div>
 
@@ -52,11 +64,17 @@
                                 <option value="Raza">Raza</option>
                                 <option value="Mestizo">Mestizo</option>
                             </select>
+                            @if ($errors->has('raza'))
+                                <p class="alert alert-danger">Seleccione raza</p>
+                            @endif
                     </div>
                     <div>
                         <label for="" class="formbold-form-label">Nombre de la raza :</label>
                         <input id="nombreRaza" name="nombreRaza" type="text" class="form-control" tabindex="3"
                             value="{{ $animal->nombreRaza }}" required>
+                        @if ($errors->has('nombreRaza'))
+                            <p class="alert alert-danger">Ingrese nombre raza </p>
+                        @endif
                     </div>
                 </div>
 
@@ -64,6 +82,9 @@
                     <label for="" class="formbold-form-label">Nombre del animal :</label>
                     <input id="nombre" name="nombre" type="text" class="form-control" tabindex="3"
                         value="{{ $animal->nombre }}" required>
+                    @if ($errors->has('nombre'))
+                        <p class="alert alert-danger">Ingrese nombre </p>
+                    @endif
                 </div>
 
                 <div class="formbold-input-flex">
@@ -71,12 +92,20 @@
                         <label for="" class="formbold-form-label">Fecha de nacimiento :</label>
                         <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control"
                             tabindex="3" value="{{ $animal->fechaNacimiento }}">
+                        @if ($errors->has('fechaNacimiento'))
+                            <p class="alert alert-danger">Ingrese fechaNacimiento </p>
+                        @endif
+
                     </div>
 
                     <div>
                         <label for="" class="formbold-form-label">Edad :</label>
                         <input id="edad" name="edad" type="text" class="form-control" tabindex="3"
                             value="{{ $animal->edad }}" required>
+                        @if ($errors->has('edad'))
+                            <p class="alert alert-danger">Ingrese edad </p>
+                        @endif
+
                     </div>
                 </div>
 
@@ -84,6 +113,10 @@
                     <label for="" class="formbold-form-label">Descripción :</label>
                     <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3"
                         value="{{ $animal->descripcion }}" required>
+                    @if ($errors->has('descripcion'))
+                        <p class="alert alert-danger">Ingrese descripción </p>
+                    @endif
+
                 </div>
 
 
