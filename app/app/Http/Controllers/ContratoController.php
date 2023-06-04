@@ -43,13 +43,16 @@ class ContratoController extends Controller
         //capturar datos
         $dpiAdoptante = $request->input('dpi');
         $adoptante = Adoptante::select()->where('dpi', $dpiAdoptante)->First();
+        if ($adoptante != null) {
+            $id = $request->input('id');
+            $animal = Animal::find($id);
 
-        $id = $request->input('id');
-        $animal = Animal::find($id);
+            $socio = Socio::find(1);
 
-        $socio = Socio::find(1);
-
-        return view("contratos.create", compact('adoptante', 'animal', 'socio'));
+            return view("contratos.create", compact('adoptante', 'animal', 'socio'));
+        } else {
+            return redirect()->route('animales.index')->with('error', 'Error, no se encontro el adoptante');
+        }
     }
 
     /**
@@ -104,9 +107,9 @@ class ContratoController extends Controller
             $estado = $request->input('estado');
 
             if ($estado == "valido") {
-                DB::table('animales')->where('id', $animal->id)->update(array('estado'=>1));  
+                DB::table('animales')->where('id', $animal->id)->update(array('estado' => 1));
             } else {
-                DB::table('animales')->where('id', $animal->id)->update(array('estado'=>0));  
+                DB::table('animales')->where('id', $animal->id)->update(array('estado' => 0));
             }
             return redirect()->route('contratos.index')
                 ->with('success', 'Contrato actualizado correctamente');

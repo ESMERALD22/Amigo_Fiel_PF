@@ -113,7 +113,7 @@
                     <input id="descripcion" name="descripcion" type="longtext" class="form-control" tabindex="3" value="{{ $contrato->observacion }}" readonly>
                 </div>
 
-                @can('contrato.index')
+                @can('contratos.index')
                 <a href="/contratos" class="btn btn-secondary" tabindex="5">Regresar</a>
                 @endcan
 

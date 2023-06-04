@@ -11,7 +11,7 @@
 
             <div class="formbold-form-title">
                 <h1><b>
-                        EDICIÓN DE INFORMACIÓN DEL ADOPTANTE </h1>
+                        EDICIÓN DE ESPECIE </h1>
             </div>
 
             <form action="{{ route('tipoAnimal.update', $tipo->id) }}" method="POST" enctype="multipart/form-data">

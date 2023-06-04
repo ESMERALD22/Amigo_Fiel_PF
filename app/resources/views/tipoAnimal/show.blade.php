@@ -6,7 +6,7 @@
 
             <div class="formbold-form-title">
                 <h1><b>
-                        INFORMACIÓN DE LA especie </h1>
+                        INFORMACIÓN DE LA ESPECIE </h1>
             </div>
 
             <form enctype="multipart/form-data">
