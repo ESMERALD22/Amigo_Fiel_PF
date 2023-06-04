@@ -4,7 +4,7 @@
   
         <header class="masthead bg-amf text-white text-center">
             
-            <img class="" src="{{ asset('vendor/adminlte/dist/img/home.png') }}" alt="..." />
+            <img class="img-fluid" src="{{ asset('vendor/adminlte/dist/img/home.png') }}" alt="..." />
             <br><br><br><br><br>
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
