@@ -46,10 +46,7 @@ class ContratoController extends Controller
         if ($adoptante != null) {
             $id = $request->input('id');
             $animal = Animal::find($id);
-
-            $socio = Socio::find(1);
-
-            return view("contratos.create", compact('adoptante', 'animal', 'socio'));
+            return view("contratos.create", compact('adoptante', 'animal'));
         } else {
             return redirect()->route('animales.index')->with('error', 'Error, no se encontro el adoptante');
         }
@@ -63,6 +60,7 @@ class ContratoController extends Controller
         request()->validate(Contrato::$rules);
         try {
             $contrato = Contrato::create($request->all());
+            DB::table('animales')->where('id', $contrato->idAnimal)->update(array('estado' => 1));
             return redirect()->route('contratos.index')->with('success', 'Contrato registrado correctamente');
         } catch (QueryException $ex) {
             return redirect()->route('contratos.index')->with('error', 'Error, no se registro el contrato');

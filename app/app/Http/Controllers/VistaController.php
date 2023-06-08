@@ -29,6 +29,7 @@ class VistaController extends Controller
 
         $this->middleware('can:ingresoAnimales.show')->only('vistaHA');
         $this->middleware('can:registrosMedicos.show')->only('showRA');
+
     }
     
     public function ver($id)

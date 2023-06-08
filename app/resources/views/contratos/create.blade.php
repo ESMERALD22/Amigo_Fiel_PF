@@ -132,7 +132,7 @@
 
                 <!-- Dejar estos input invisible solo se necesita para mandar ids -->
                 <input type="hidden" id="idAnimal" name="idAnimal" type="text" value="{{ $animal->id }}">
-                <input type="hidden" id="idSocio" name="idSocio" type="text" value={{ Auth::user()->id }}>
+                <input type="hidden" id="idSocio" name="idSocio" type="text" value="{{ Auth::user()->id }}">
                 <input type="hidden" id="idAdoptante" name="idAdoptante" type="text" value="{{ $adoptante->id }}">
                 <input type="hidden" id="estado" name="estado" type="text" value="valido">
 
